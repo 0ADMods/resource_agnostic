@@ -1,0 +1,9 @@
+{
+    "name": "ResourceAgnostic",
+    "version": "0.0.1",
+    "label": "Resource Agnostic Components",
+    "url": "https://github.com/0ADMods/Resource_Agnostic_Components",
+    "description": "Changing JS Components so that Resources are not Hard-coded",
+    "dependencies": ["0ad=0.0.19"],
+    "type": "functionality"
+}

@@ -1,0 +1,52 @@
+
+Resource Agnostic Components
+
+
+Description
+------------------------------------------------------------------------
+The aim of this mod is to make all JS Simulation Components resource
+agnostic - that is to say, that they do not have the game's resources
+hard-coded into them.
+
+This is so that modders can add/remove resources easily and without
+having to modify the simulation code.
+
+Installation
+------------------------------------------------------------------------
+1. Acquire zip from GitHub (button marked "Download ZIP")
+2. Move to your mods folder, default locations are:
+   - Linux   : ~/.local/share/0ad/mods
+   - OSX     : ~/Library/Application\ Support/0ad/mods
+   - Windows : "Documents" or "My Documents" Folder => My Games\0ad\mods\
+3. Unzip archive
+4. Rename the resulting folder to "ResourceAgnostic"
+5. Start 0AD
+6. From main menu, "Tools & Options" > "Mod Selection"
+7. Select "ResourceAgnostic" from upper section
+8. Press buttons captioned with "Enable", "Save Configuration", and then
+   "Start Mods" in that order
+
+Scripting Notes
+------------------------------------------------------------------------
+To add an new resource, copy one of the currently existing resources in
+`simulation/data/resources` and amend the copy to your heart's content.
+
+To remove a resource, add `.DELETED` to the end of the resource's JSON
+file.
+
+Credits
+------------------------------------------------------------------------
+Thanks go to the main development team at Wildfire Games, the
+independent teams working on modifying and expanding the game, not to
+mention all the volunteers and members of the further community.
+
+License
+------------------------------------------------------------------------
+The XML files within this work are based on work and examples by
+Wildfire Games, and are available under the Creative Commons Attribution
+ShareAlike 3.0 license. Details may be found at
+http://creativecommons.org/licenses/by-sa/3.0/
+
+The scripting and everything else contained within this work is
+released under the GPLv2+ license. Details may be found at
+http://opensource.org/licenses/GPL-2.0
