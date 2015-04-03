@@ -1,0 +1,12 @@
+{
+	"code": "metal",
+	"name": "Metal",
+	"icons": {
+		"large": "session/icons/resources/metal.png",
+		"small": "session/icons/resources/metal_small.png"
+	},
+	"subtypes": [
+		"ore"
+	],
+	"truePrice": 100
+}

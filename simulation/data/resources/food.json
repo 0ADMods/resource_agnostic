@@ -1,0 +1,16 @@
+{
+	"code": "food",
+	"name": "Food",
+	"icons": {
+		"large": "session/icons/resources/food.png",
+		"small": "session/icons/resources/food_small.png"
+	},
+	"subtypes": [
+		"fish",
+		"fruit",
+		"grain",
+		"meat",
+		"milk"
+	],
+	"truePrice": 100
+}
