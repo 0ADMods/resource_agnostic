@@ -91,30 +91,19 @@ StatisticsTracker.prototype.Init = function()
 	this.enemyBuildingsDestroyedValue = 0;
 	// resources
 	this.resourcesGathered = {
-		"food": 0,
-		"wood": 0,
-		"metal": 0,
-		"stone": 0,
 		"vegetarianFood": 0
 	};
-	this.resourcesUsed = {
-		"food": 0,
-		"wood": 0,
-		"metal": 0,
-		"stone": 0
-	};
-	this.resourcesSold = {
-		"food": 0,
-		"wood": 0,
-		"metal": 0,
-		"stone": 0
-	};
-	this.resourcesBought = {
-		"food": 0,
-		"wood": 0,
-		"metal": 0,
-		"stone": 0
-	};
+	this.resourcesUsed = {};
+	this.resourcesSold = {};
+	this.resourcesBought = {};
+	for (let res of Resources.GetCodes())
+	{
+		this.resourcesGathered[res] = 0;
+		this.resourcesUsed[res] = 0;
+		this.resourcesSold[res] = 0;
+		this.resourcesBought[res] = 0;
+	}
+	
 	this.tributesSent = 0;
 	this.tributesReceived = 0;
 	this.tradeIncome = 0;

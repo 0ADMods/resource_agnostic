@@ -1243,8 +1243,10 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 	
 	var result = {
 		"pieces": [],
-		"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 0, "population": 0, "populationBonus": 0, "time": 0},
+		"cost": {"population": 0, "populationBonus": 0, "time": 0},
 	};
+	for (let res of Resources.GetCodes())
+		result.cost[res] = 0;
 	
 	var previewEntities = [];
 	if (end.pos)
@@ -1526,13 +1528,9 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 			// copied over, so we need to fetch it from the template instead).
 			// TODO: we should really use a Cost object or at least some utility functions for this, this is mindless
 			// boilerplate that's probably duplicated in tons of places.
-			result.cost.food += tplData.cost.food;
-			result.cost.wood += tplData.cost.wood;
-			result.cost.stone += tplData.cost.stone;
-			result.cost.metal += tplData.cost.metal;
-			result.cost.population += tplData.cost.population;
-			result.cost.populationBonus += tplData.cost.populationBonus;
-			result.cost.time += tplData.cost.time;
+			var entries = Resources.GetCodes().concat("population", "populationBonus", "time");
+			for (let res of entries)
+				result.cost[res] = tplData.cost[res];
 		}
 
 		var canAfford = true;

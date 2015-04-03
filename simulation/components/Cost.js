@@ -19,15 +19,17 @@ Cost.prototype.Schema =
 	"<element name='PopulationBonus' a:help='Population cap increase while this entity exists'>" +
 		"<data type='nonNegativeInteger'/>" +
 	"</element>" +
-	"<element name='BuildTime' a:help='Time taken to construct/train this unit (in seconds)'>" +
+	"<element name='BuildTime' a:help='Time taken to construct/train this entity (in seconds)'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
-	"<element name='Resources' a:help='Resource costs to construct/train this unit'>" +
+	"<element name='Resources' a:help='Resource costs to construct/train this entity'>" +
 		"<interleave>" +
-			"<element name='food'><data type='nonNegativeInteger'/></element>" +
-			"<element name='wood'><data type='nonNegativeInteger'/></element>" +
-			"<element name='stone'><data type='nonNegativeInteger'/></element>" +
-			"<element name='metal'><data type='nonNegativeInteger'/></element>" +
+			"<oneOrMore>" +
+				"<element a:help='A particular resource cost'>" +
+					"<anyName/>" +
+					"<data type='nonNegativeInteger'/>" +
+				"</element>" +
+			"</oneOrMore>" +
 		"</interleave>" +
 	"</element>";
 
@@ -56,8 +58,13 @@ Cost.prototype.GetBuildTime = function()
 Cost.prototype.GetResourceCosts = function()
 {
 	var costs = {};
+	var resCodes = Resources.GetCodes();
+	
 	for (var r in this.template.Resources)
 	{
+		if (resCodes.indexOf(r.toLowerCase()) < 0)
+			continue;
+		
 		costs[r] = +this.template.Resources[r];
 		costs[r] = ApplyValueModificationsToEntity("Cost/Resources/"+r, costs[r], this.entity);
 	}

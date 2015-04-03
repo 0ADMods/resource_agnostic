@@ -13,16 +13,8 @@ Player.prototype.Init = function()
 	this.popBonuses = 0; // sum of population bonuses of player's entities
 	this.maxPop = 300; // maximum population
 	this.trainingBlocked = false; // indicates whether any training queue is currently blocked
-	this.resourceCount = {
-		"food": 300,
-		"wood": 300,
-		"metal": 300,
-		"stone": 300
-	};
-	this.tradingGoods = [                      // goods for next trade-route and its proba in % (the sum of probas must be 100)
-		{ "goods":  "wood", "proba": 30 },
-		{ "goods": "stone", "proba": 35 },
-		{ "goods": "metal", "proba": 35 } ];
+	this.resourceCount = {};
+	this.tradingGoods = []; // goods for next trade-route and its proba in % (the sum of probas must be 100)
 	this.team = -1;	// team number of the player, players on the same team will always have ally diplomatic status - also this is useful for team emblems, scoring, etc.
 	this.teamsLocked = false;
 	this.state = "active"; // game state - one of "active", "defeated", "won"
@@ -35,15 +27,24 @@ Player.prototype.Init = function()
 	this.cheatsEnabled = false;
 	this.cheatTimeMultiplier = 1;
 	this.heroes = [];
-	this.resourceNames = {
-		"food": markForTranslation("Food"),
-		"wood": markForTranslation("Wood"),
-		"metal": markForTranslation("Metal"),
-		"stone": markForTranslation("Stone"),
-	}
+	this.resourceNames = {};
 	this.disabledTemplates = {};
 	this.disabledTechnologies = {};
 	this.startingTechnologies = [];
+	
+	var resCodes = Resources.GetCodes();
+	var tradeProportions = [ 0, 0 ];
+	tradeProportions[0] = Math.floor(20 / resCodes.length);
+	tradeProportions[1] = 20 - resCodes.length * tradeProportions[0];
+	var resPos = 0;
+	for (let res of resCodes)
+	{
+		this.resourceCount[res] = 300;
+		this.resourceNames[res] = Resources.GetResource(res).name;
+		let proportion = tradeProportions[0] + ((resPos < tradeProportions[1]) ? 1 : 0);
+		this.tradingGoods.push({ "goods":  res, "proba": (proportion * 5) });
+		resPos++;
+	}
 };
 
 Player.prototype.SetPlayerID = function(id)
@@ -169,14 +170,12 @@ Player.prototype.UnBlockTraining = function()
 
 Player.prototype.SetResourceCounts = function(resources)
 {
-	if (resources.food !== undefined)
-		this.resourceCount.food = resources.food;
-	if (resources.wood !== undefined)
-		this.resourceCount.wood = resources.wood;
-	if (resources.stone !== undefined)
-		this.resourceCount.stone = resources.stone;
-	if (resources.metal !== undefined)
-		this.resourceCount.metal = resources.metal;
+	for (let res in resources)
+	{
+		if (this.resourceCount[res] === undefined)
+			warn("The "+res+" resourcehas been passed to cmpPlayer, but does not exist/has been disabled by mod");
+		this.resourceCount[res] = resources[res];
+	}
 };
 
 Player.prototype.GetResourceCounts = function()
@@ -318,7 +317,15 @@ Player.prototype.SetTradingGoods = function(tradingGoods)
 	if (sumProba != 100)	// consistency check
 	{
 		error("Player.js SetTradingGoods: " + uneval(tradingGoods));
-		tradingGoods = { "food": 20, "wood":20, "stone":30, "metal":30 };
+		var first = true;
+		for (let res of Resources.GetCodes())
+			if (first)
+			{
+				tradingGoods[res] = 100;
+				first = false;
+			}
+			else
+				tradingGoods[res] = 0;
 	}
 
 	this.tradingGoods = [];

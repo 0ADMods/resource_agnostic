@@ -4,9 +4,6 @@
 // Additional gain for ships for each garrisoned trader, in percents
 const GARRISONED_TRADER_ADDITION = 20;
 
-// Array of resource names
-const RESOURCES = ["food", "wood", "stone", "metal"];
-
 function Trader() {}
 
 Trader.prototype.Schema =
@@ -152,7 +149,7 @@ Trader.prototype.GetRequiredGoods = function()
 Trader.prototype.SetRequiredGoods = function(requiredGoods)
 {
 	// Check that argument is a correct resource name
-	if (!requiredGoods || RESOURCES.indexOf(requiredGoods) == -1)
+	if (!requiredGoods || Resources.GetCodes().indexOf(requiredGoods) == -1)
 		this.requiredGoods = undefined;
 	else
 		this.requiredGoods = requiredGoods;
@@ -223,13 +220,14 @@ Trader.prototype.PerformTrade = function(currentMarket)
 	// otherwise choose one according to the player's trading priorities
 	// if still nothing (but should never happen), choose metal
 	var nextGoods = this.GetRequiredGoods();
-	if (!nextGoods || RESOURCES.indexOf(nextGoods) == -1)
+	var resCodes = Resources.GetCodes();
+	if (!nextGoods || resCodes.indexOf(nextGoods) == -1)
 	{
 		var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
 		if (cmpPlayer)
 			nextGoods = cmpPlayer.GetNextTradingGoods();
 
-		if (!nextGoods || RESOURCES.indexOf(nextGoods) == -1)
+		if (!nextGoods || resCodes.indexOf(nextGoods) == -1)
 			nextGoods = "metal";
 	}
 	this.goods.type = nextGoods;
