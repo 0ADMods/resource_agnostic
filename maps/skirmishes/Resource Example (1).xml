@@ -1,0 +1,1110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario version="6">
+	<Environment>
+		<SkySet>sunset</SkySet>
+		<SunColor r="0.929412" g="0.72549" b="0.482353"/>
+		<SunElevation angle="0.340544"/>
+		<SunRotation angle="-1.50827"/>
+		<TerrainAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
+		<UnitsAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
+		<Fog>
+			<FogFactor>0</FogFactor>
+			<FogThickness>0.5</FogThickness>
+			<FogColor r="0.8" g="0.8" b="0.898039"/>
+		</Fog>
+		<Water>
+			<WaterBody>
+				<Type>clap</Type>
+				<Color r="0.333333" g="0.372549" b="0.654902"/>
+				<Tint r="0.278431" g="0.298039" b="0.588235"/>
+				<Height>166.122</Height>
+				<Waviness>4</Waviness>
+				<Murkiness>0.426758</Murkiness>
+				<WindAngle>-0.374291</WindAngle>
+			</WaterBody>
+		</Water>
+		<Postproc>
+			<Brightness>0</Brightness>
+			<Contrast>1</Contrast>
+			<Saturation>0.99</Saturation>
+			<Bloom>0.1999</Bloom>
+			<PostEffect>default</PostEffect>
+		</Postproc>
+	</Environment>
+	<Camera>
+		<Position x="406.892" y="265.157" z="94.4314"/>
+		<Rotation angle="-0.659234"/>
+		<Declination angle="0.610865"/>
+	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "CircularMap": true,
+  "Description": "Example/Demo map showing how a resource (in this case water) may be implemented via the ResouceAgnostic mod.\n\n(Apologies for the terrible mapping)",
+  "GameType": "endless",
+  "Keywords": [
+    "demo"
+  ],
+  "LockTeams": false,
+  "Name": "Water Resource Example",
+  "PlayerData": [
+    {}
+  ],
+  "Preview": "",
+  "RevealMap": false
+}
+]]></ScriptSettings>
+	<Entities>
+		<Entity uid="11">
+			<Template>skirmish/structures/default_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="303.49408" z="230.3689"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="63121"/>
+		</Entity>
+		<Entity uid="12">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="283.73356" z="219.68879"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="61519"/>
+		</Entity>
+		<Entity uid="13">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="287.17023" z="215.6608"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="37020"/>
+		</Entity>
+		<Entity uid="14">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="291.71604" z="211.72403"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="19136"/>
+		</Entity>
+		<Entity uid="15">
+			<Template>skirmish/units/default_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="294.49418" z="208.72764"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="25349"/>
+		</Entity>
+		<Entity uid="16">
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
+			<Player>1</Player>
+			<Position x="325.56052" z="237.32547"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="29159"/>
+		</Entity>
+		<Entity uid="17">
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
+			<Player>1</Player>
+			<Position x="322.14441" z="241.07676"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="2218"/>
+		</Entity>
+		<Entity uid="18">
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
+			<Player>1</Player>
+			<Position x="319.18998" z="244.72971"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="352"/>
+		</Entity>
+		<Entity uid="19">
+			<Template>skirmish/units/default_infantry_ranged_b</Template>
+			<Player>1</Player>
+			<Position x="315.1944" z="249.22751"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="1402"/>
+		</Entity>
+		<Entity uid="27">
+			<Template>skirmish/structures/default_market</Template>
+			<Player>1</Player>
+			<Position x="343.62555" z="188.76655"/>
+			<Orientation y="-0.85633"/>
+			<Actor seed="39447"/>
+		</Entity>
+		<Entity uid="28">
+			<Template>skirmish/structures/default_outpost</Template>
+			<Player>1</Player>
+			<Position x="301.7468" z="95.55544"/>
+			<Orientation y="-0.01474"/>
+			<Actor seed="44911"/>
+		</Entity>
+		<Entity uid="29">
+			<Template>skirmish/structures/default_outpost</Template>
+			<Player>1</Player>
+			<Position x="206.29206" z="134.07612"/>
+			<Orientation y="0.75336"/>
+			<Actor seed="19501"/>
+		</Entity>
+		<Entity uid="30">
+			<Template>skirmish/structures/default_outpost</Template>
+			<Player>1</Player>
+			<Position x="167.28562" z="229.18952"/>
+			<Orientation y="1.53689"/>
+			<Actor seed="16800"/>
+		</Entity>
+		<Entity uid="31">
+			<Template>skirmish/structures/default_outpost</Template>
+			<Player>1</Player>
+			<Position x="206.52369" z="322.08124"/>
+			<Orientation y="2.32984"/>
+			<Actor seed="58030"/>
+		</Entity>
+		<Entity uid="32">
+			<Template>skirmish/structures/default_outpost</Template>
+			<Player>1</Player>
+			<Position x="301.87543" z="364.06592"/>
+			<Orientation y="-3.12499"/>
+			<Actor seed="15725"/>
+		</Entity>
+		<Entity uid="33">
+			<Template>skirmish/structures/default_outpost</Template>
+			<Player>1</Player>
+			<Position x="397.93543" z="323.60474"/>
+			<Orientation y="-2.3121"/>
+			<Actor seed="51197"/>
+		</Entity>
+		<Entity uid="34">
+			<Template>skirmish/structures/default_outpost</Template>
+			<Player>1</Player>
+			<Position x="436.9853" z="227.82532"/>
+			<Orientation y="-1.52816"/>
+			<Actor seed="43394"/>
+		</Entity>
+		<Entity uid="35">
+			<Template>skirmish/structures/default_outpost</Template>
+			<Player>1</Player>
+			<Position x="397.9657" z="135.43091"/>
+			<Orientation y="-0.78542"/>
+			<Actor seed="19628"/>
+		</Entity>
+		<Entity uid="36">
+			<Template>skirmish/structures/default_farmstead</Template>
+			<Player>1</Player>
+			<Position x="255.14252" z="354.60474"/>
+			<Orientation y="2.81373"/>
+			<Actor seed="4968"/>
+		</Entity>
+		<Entity uid="37">
+			<Template>skirmish/structures/default_field</Template>
+			<Player>1</Player>
+			<Position x="261.30103" z="326.9751"/>
+			<Orientation y="2.80497"/>
+			<Actor seed="4475"/>
+		</Entity>
+		<Entity uid="38">
+			<Template>skirmish/structures/default_field</Template>
+			<Player>1</Player>
+			<Position x="233.21076" z="347.7255"/>
+			<Orientation y="2.80497"/>
+			<Actor seed="55164"/>
+		</Entity>
+		<Entity uid="39">
+			<Template>skirmish/structures/default_field</Template>
+			<Player>1</Player>
+			<Position x="253.39927" z="376.24839"/>
+			<Orientation y="2.80497"/>
+			<Actor seed="64916"/>
+		</Entity>
+		<Entity uid="40">
+			<Template>skirmish/structures/default_field</Template>
+			<Player>1</Player>
+			<Position x="281.33445" z="355.64371"/>
+			<Orientation y="2.80497"/>
+			<Actor seed="18822"/>
+		</Entity>
+		<Entity uid="41">
+			<Template>skirmish/structures/default_storehouse</Template>
+			<Player>1</Player>
+			<Position x="185.06415" z="176.69254"/>
+			<Orientation y="1.1262"/>
+			<Actor seed="44417"/>
+		</Entity>
+		<Entity uid="42">
+			<Template>skirmish/structures/default_storehouse</Template>
+			<Player>1</Player>
+			<Position x="355.13404" z="109.79543"/>
+			<Orientation y="-0.42054"/>
+			<Actor seed="14880"/>
+		</Entity>
+		<Entity uid="43">
+			<Template>skirmish/structures/default_storehouse</Template>
+			<Player>1</Player>
+			<Position x="426.3371" z="271.06226"/>
+			<Orientation y="-1.87392"/>
+			<Actor seed="56255"/>
+		</Entity>
+		<Entity uid="44">
+			<Template>skirmish/structures/default_blacksmith</Template>
+			<Player>1</Player>
+			<Position x="338.6756" z="260.21296"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="59412"/>
+		</Entity>
+		<Entity uid="45">
+			<Template>skirmish/structures/default_barracks</Template>
+			<Player>1</Player>
+			<Position x="352.38163" z="272.73554"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="4654"/>
+		</Entity>
+		<Entity uid="46">
+			<Template>skirmish/structures/default_temple</Template>
+			<Player>1</Player>
+			<Position x="273.44178" z="196.43647"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="19569"/>
+		</Entity>
+		<Entity uid="47">
+			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
+			<Player>0</Player>
+			<Position x="378.22895" z="114.07645"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="52962"/>
+		</Entity>
+		<Entity uid="48">
+			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
+			<Player>0</Player>
+			<Position x="375.87378" z="88.39557"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="58484"/>
+		</Entity>
+		<Entity uid="49">
+			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
+			<Player>0</Player>
+			<Position x="345.75647" z="76.8692"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="46390"/>
+		</Entity>
+		<Entity uid="50">
+			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
+			<Player>0</Player>
+			<Position x="327.63819" z="105.04908"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="57639"/>
+		</Entity>
+		<Entity uid="51">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="360.95502" z="75.62835"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="35411"/>
+		</Entity>
+		<Entity uid="52">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="339.76587" z="96.38079"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="24709"/>
+		</Entity>
+		<Entity uid="53">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="349.63196" z="86.8877"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="32039"/>
+		</Entity>
+		<Entity uid="54">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="358.90403" z="135.88105"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="47970"/>
+		</Entity>
+		<Entity uid="55">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="371.90653" z="135.0846"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="56588"/>
+		</Entity>
+		<Entity uid="56">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="407.4253" z="104.22596"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="62834"/>
+		</Entity>
+		<Entity uid="57">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="330.54328" z="52.2482"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="3795"/>
+		</Entity>
+		<Entity uid="58">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="317.09293" z="72.00187"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="20406"/>
+		</Entity>
+		<Entity uid="59">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="388.4347" z="120.72492"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="23710"/>
+		</Entity>
+		<Entity uid="60">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="396.20484" z="85.08121"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="52606"/>
+		</Entity>
+		<Entity uid="61">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="374.25815" z="74.72107"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="2579"/>
+		</Entity>
+		<Entity uid="62">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="343.4394" z="58.23987"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="31572"/>
+		</Entity>
+		<Entity uid="63">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="328.55655" z="72.30391"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="65354"/>
+		</Entity>
+		<Entity uid="64">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="318.33872" z="90.34484"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="39832"/>
+		</Entity>
+		<Entity uid="65">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="363.68583" z="127.2567"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="19669"/>
+		</Entity>
+		<Entity uid="66">
+			<Template>gaia/flora_tree_palm_tropic</Template>
+			<Player>0</Player>
+			<Position x="392.22352" z="98.83642"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="7310"/>
+		</Entity>
+		<Entity uid="67">
+			<Template>gaia/flora_tree_palm_tropic</Template>
+			<Player>0</Player>
+			<Position x="363.13962" z="84.4041"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="5095"/>
+		</Entity>
+		<Entity uid="68">
+			<Template>gaia/flora_tree_palm_tropic</Template>
+			<Player>0</Player>
+			<Position x="329.20517" z="76.317"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="58482"/>
+		</Entity>
+		<Entity uid="69">
+			<Template>gaia/flora_tree_palm_tropic</Template>
+			<Player>0</Player>
+			<Position x="318.58512" z="102.04148"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="2264"/>
+		</Entity>
+		<Entity uid="70">
+			<Template>gaia/flora_tree_palm_tropic</Template>
+			<Player>0</Player>
+			<Position x="383.49512" z="132.30619"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="44121"/>
+		</Entity>
+		<Entity uid="71">
+			<Template>gaia/flora_tree_palm_tropic</Template>
+			<Player>0</Player>
+			<Position x="371.49506" z="128.9821"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="57090"/>
+		</Entity>
+		<Entity uid="72">
+			<Template>gaia/flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="396.6248" z="122.7713"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="49626"/>
+		</Entity>
+		<Entity uid="73">
+			<Template>gaia/flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="401.96442" z="102.69741"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="18746"/>
+		</Entity>
+		<Entity uid="74">
+			<Template>gaia/flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="387.86857" z="84.75188"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="43926"/>
+		</Entity>
+		<Entity uid="75">
+			<Template>gaia/flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="380.6324" z="96.06197"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="11430"/>
+		</Entity>
+		<Entity uid="76">
+			<Template>gaia/flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="360.1251" z="58.71306"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="41309"/>
+		</Entity>
+		<Entity uid="77">
+			<Template>gaia/flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="315.84351" z="118.00005"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="18419"/>
+		</Entity>
+		<Entity uid="78">
+			<Template>gaia/flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="312.1985" z="82.40751"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="3352"/>
+		</Entity>
+		<Entity uid="79">
+			<Template>gaia/flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="415.69318" z="87.41515"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="50569"/>
+		</Entity>
+		<Entity uid="80">
+			<Template>gaia/flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="422.00123" z="105.28812"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="20837"/>
+		</Entity>
+		<Entity uid="81">
+			<Template>gaia/flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="413.98871" z="115.87655"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="7735"/>
+		</Entity>
+		<Entity uid="82">
+			<Template>gaia/flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="340.6944" z="31.85306"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="16375"/>
+		</Entity>
+		<Entity uid="83">
+			<Template>gaia/flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="321.28742" z="43.52659"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="17659"/>
+		</Entity>
+		<Entity uid="84">
+			<Template>gaia/flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="304.7046" z="63.33313"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="32390"/>
+		</Entity>
+		<Entity uid="85">
+			<Template>gaia/flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="293.89625" z="109.61825"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="33267"/>
+		</Entity>
+		<Entity uid="86">
+			<Template>gaia/flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="424.26716" z="129.20493"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="17081"/>
+		</Entity>
+		<Entity uid="87">
+			<Template>gaia/flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="410.42255" z="134.02891"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="60200"/>
+		</Entity>
+		<Entity uid="88">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="401.49668" z="126.09412"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="3917"/>
+		</Entity>
+		<Entity uid="89">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="427.87641" z="115.24389"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="62265"/>
+		</Entity>
+		<Entity uid="90">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="350.85572" z="51.19434"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="12846"/>
+		</Entity>
+		<Entity uid="91">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="299.08597" z="75.4025"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="62515"/>
+		</Entity>
+		<Entity uid="92">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="304.68534" z="109.24769"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="29888"/>
+		</Entity>
+		<Entity uid="93">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="392.53379" z="141.07044"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="17223"/>
+		</Entity>
+		<Entity uid="94">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="388.83301" z="149.76102"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="43624"/>
+		</Entity>
+		<Entity uid="95">
+			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
+			<Player>0</Player>
+			<Position x="413.22767" z="143.83838"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="59968"/>
+		</Entity>
+		<Entity uid="96">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="399.80112" z="108.22298"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="44765"/>
+		</Entity>
+		<Entity uid="97">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="366.96897" z="62.5761"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="27617"/>
+		</Entity>
+		<Entity uid="98">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="330.46042" z="94.11509"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="35251"/>
+		</Entity>
+		<Entity uid="99">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="293.5723" z="90.14115"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="12448"/>
+		</Entity>
+		<Entity uid="100">
+			<Template>gaia/geology_metal_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="168.29712" z="157.20685"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="51709"/>
+		</Entity>
+		<Entity uid="101">
+			<Template>gaia/geology_metal_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="148.95606" z="171.25538"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="41878"/>
+		</Entity>
+		<Entity uid="102">
+			<Template>gaia/geology_metal_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="156.27384" z="181.4932"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="34323"/>
+		</Entity>
+		<Entity uid="103">
+			<Template>gaia/geology_metal_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="153.75306" z="153.94822"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="45138"/>
+		</Entity>
+		<Entity uid="104">
+			<Template>gaia/geology_metal_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="121.73235" z="180.01371"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="15176"/>
+		</Entity>
+		<Entity uid="105">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="132.7928" z="158.90043"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="8824"/>
+		</Entity>
+		<Entity uid="106">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="137.61707" z="189.8017"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="46379"/>
+		</Entity>
+		<Entity uid="108">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="188.07285" z="208.14371"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="57626"/>
+		</Entity>
+		<Entity uid="109">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="210.8982" z="159.33265"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="9062"/>
+		</Entity>
+		<Entity uid="111">
+			<Template>gaia/geology_metal_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="186.49024" z="151.04123"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="59372"/>
+		</Entity>
+		<Entity uid="112">
+			<Template>gaia/geology_metal_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="143.00382" z="140.00266"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="53205"/>
+		</Entity>
+		<Entity uid="113">
+			<Template>gaia/geology_metal_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="125.5393" z="223.4874"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="27736"/>
+		</Entity>
+		<Entity uid="114">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="448.21091" z="263.3235"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="52660"/>
+		</Entity>
+		<Entity uid="115">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="441.29654" z="252.07056"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="27266"/>
+		</Entity>
+		<Entity uid="116">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="454.94169" z="238.96967"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="51713"/>
+		</Entity>
+		<Entity uid="117">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="466.41358" z="262.29468"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="9482"/>
+		</Entity>
+		<Entity uid="118">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="451.4073" z="293.62644"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="49806"/>
+		</Entity>
+		<Entity uid="119">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="425.67008" z="297.69693"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="48864"/>
+		</Entity>
+		<Entity uid="120">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="443.7281" z="282.32444"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="17222"/>
+		</Entity>
+		<Entity uid="121">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="409.4008" z="287.93995"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="2035"/>
+		</Entity>
+		<Entity uid="122">
+			<Template>gaia/geology_stone_greek</Template>
+			<Player>0</Player>
+			<Position x="463.88822" z="282.47092"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="13189"/>
+		</Entity>
+		<Entity uid="123">
+			<Template>gaia/geology_stone_greek</Template>
+			<Player>0</Player>
+			<Position x="467.96787" z="241.20246"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="50900"/>
+		</Entity>
+		<Entity uid="124">
+			<Template>gaia/geology_stone_greek</Template>
+			<Player>0</Player>
+			<Position x="423.59095" z="242.14002"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="6448"/>
+		</Entity>
+		<Entity uid="125">
+			<Template>gaia/geology_stone_greek</Template>
+			<Player>0</Player>
+			<Position x="410.44282" z="311.03995"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="42678"/>
+		</Entity>
+		<Entity uid="126">
+			<Template>gaia/geology_stone_greek</Template>
+			<Player>0</Player>
+			<Position x="434.47535" z="311.55433"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="41575"/>
+		</Entity>
+		<Entity uid="127">
+			<Template>gaia/geology_stonemine_medit_quarry</Template>
+			<Player>0</Player>
+			<Position x="453.55628" z="315.19233"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="42690"/>
+		</Entity>
+		<Entity uid="128">
+			<Template>gaia/geology_stonemine_medit_quarry</Template>
+			<Player>0</Player>
+			<Position x="429.26133" z="331.94483"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="39739"/>
+		</Entity>
+		<Entity uid="129">
+			<Template>gaia/geology_stonemine_medit_quarry</Template>
+			<Player>0</Player>
+			<Position x="487.46479" z="250.86887"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="33311"/>
+		</Entity>
+		<Entity uid="130">
+			<Template>gaia/geology_stonemine_medit_quarry</Template>
+			<Player>0</Player>
+			<Position x="478.94043" z="276.17521"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="38696"/>
+		</Entity>
+		<Entity uid="131">
+			<Template>gaia/geology_stonemine_medit_quarry</Template>
+			<Player>0</Player>
+			<Position x="451.51487" z="216.24857"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="24855"/>
+		</Entity>
+		<Entity uid="132">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="166.33747" z="130.52366"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="25094"/>
+		</Entity>
+		<Entity uid="133">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="109.35262" z="117.53336"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="34128"/>
+		</Entity>
+		<Entity uid="134">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="98.99634" z="167.18668"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="32534"/>
+		</Entity>
+		<Entity uid="135">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="110.09748" z="201.8188"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="3966"/>
+		</Entity>
+		<Entity uid="136">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="144.08738" z="220.65958"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="24190"/>
+		</Entity>
+		<Entity uid="137">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="139.14875" z="111.06034"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="30234"/>
+		</Entity>
+		<Entity uid="138">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="184.96741" z="105.21143"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="49010"/>
+		</Entity>
+		<Entity uid="139">
+			<Template>gaia/geology_metal_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="192.8938" z="125.06231"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="56508"/>
+		</Entity>
+		<Entity uid="140">
+			<Template>gaia/geology_metal_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="157.03574" z="100.30756"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="903"/>
+		</Entity>
+		<Entity uid="141">
+			<Template>gaia/geology_metal_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="122.07522" z="137.08243"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="48692"/>
+		</Entity>
+		<Entity uid="142">
+			<Template>gaia/geology_metal_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="92.45426" z="152.45331"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="52317"/>
+		</Entity>
+		<Entity uid="143">
+			<Template>gaia/geology_metal_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="97.36594" z="185.54984"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="30369"/>
+		</Entity>
+		<Entity uid="144">
+			<Template>gaia/geology_metal_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="164.20926" z="213.33"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="268"/>
+		</Entity>
+		<Entity uid="145">
+			<Template>gaia/geology_metal_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="160.72107" z="203.97959"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="17453"/>
+		</Entity>
+		<Entity uid="146">
+			<Template>gaia/geology_metal_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="192.72361" z="140.52628"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="643"/>
+		</Entity>
+		<Entity uid="147">
+			<Template>gaia/geology_metal_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="203.34955" z="118.13578"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="2426"/>
+		</Entity>
+		<Entity uid="148">
+			<Template>skirmish/structures/default_dock</Template>
+			<Player>1</Player>
+			<Position x="371.6503" z="352.44721"/>
+			<Orientation y="3.33957"/>
+			<Actor seed="59113"/>
+		</Entity>
+		<Entity uid="149">
+			<Template>skirmish/structures/default_house_10</Template>
+			<Player>1</Player>
+			<Position x="407.87967" z="198.75812"/>
+			<Orientation y="-1.28405"/>
+			<Actor seed="46825"/>
+		</Entity>
+		<Entity uid="150">
+			<Template>skirmish/structures/default_house_10</Template>
+			<Player>1</Player>
+			<Position x="392.74308" z="190.63169"/>
+			<Orientation y="-1.14763"/>
+			<Actor seed="7289"/>
+		</Entity>
+		<Entity uid="151">
+			<Template>skirmish/structures/default_house_10</Template>
+			<Player>1</Player>
+			<Position x="402.93262" z="173.80073"/>
+			<Orientation y="-2.34165"/>
+			<Actor seed="58638"/>
+		</Entity>
+		<Entity uid="152">
+			<Template>skirmish/structures/default_house_10</Template>
+			<Player>1</Player>
+			<Position x="256.65223" z="132.07798"/>
+			<Orientation y="0.27819"/>
+			<Actor seed="203"/>
+		</Entity>
+		<Entity uid="153">
+			<Template>skirmish/structures/default_house_10</Template>
+			<Player>1</Player>
+			<Position x="269.41285" z="115.87743"/>
+			<Orientation y="-0.96297"/>
+			<Actor seed="36829"/>
+		</Entity>
+		<Entity uid="154">
+			<Template>skirmish/structures/default_house_10</Template>
+			<Player>1</Player>
+			<Position x="238.23456" z="125.04537"/>
+			<Orientation y="5.62455"/>
+			<Actor seed="22060"/>
+		</Entity>
+		<Entity uid="157">
+			<Template>skirmish/structures/default_house_10</Template>
+			<Player>1</Player>
+			<Position x="181.42917" z="262.29087"/>
+			<Orientation y="1.82958"/>
+			<Actor seed="61182"/>
+		</Entity>
+		<Entity uid="158">
+			<Template>skirmish/structures/default_house_10</Template>
+			<Player>1</Player>
+			<Position x="186.27701" z="278.27057"/>
+			<Orientation y="6.76731"/>
+			<Actor seed="11423"/>
+		</Entity>
+		<Entity uid="159">
+			<Template>skirmish/structures/default_house_10</Template>
+			<Player>1</Player>
+			<Position x="201.3147" z="263.51655"/>
+			<Orientation y="1.94437"/>
+			<Actor seed="24375"/>
+		</Entity>
+		<Entity uid="160">
+			<Template>skirmish/structures/default_house_10</Template>
+			<Player>1</Player>
+			<Position x="342.44401" z="336.13862"/>
+			<Orientation y="-3.93564"/>
+			<Actor seed="22602"/>
+		</Entity>
+		<Entity uid="161">
+			<Template>skirmish/structures/default_house_10</Template>
+			<Player>1</Player>
+			<Position x="325.97172" z="325.5658"/>
+			<Orientation y="-2.95032"/>
+			<Actor seed="18317"/>
+		</Entity>
+		<Entity uid="162">
+			<Template>gaia/resource_water_well</Template>
+			<Player>1</Player>
+			<Position x="198.33552" z="250.47034"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="48454"/>
+		</Entity>
+		<Entity uid="163">
+			<Template>gaia/resource_water_well</Template>
+			<Player>1</Player>
+			<Position x="338.50098" z="321.47037"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="32269"/>
+		</Entity>
+		<Entity uid="164">
+			<Template>gaia/resource_water_well</Template>
+			<Player>1</Player>
+			<Position x="253.93497" z="344.89802"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="9160"/>
+		</Entity>
+		<Entity uid="165">
+			<Template>gaia/resource_water_well</Template>
+			<Player>1</Player>
+			<Position x="270.52338" z="131.01944"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="56082"/>
+		</Entity>
+		<Entity uid="166">
+			<Template>gaia/resource_water_well</Template>
+			<Player>1</Player>
+			<Position x="393.8346" z="203.81211"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="10737"/>
+		</Entity>
+		<Entity uid="167">
+			<Template>gaia/resource_water_well</Template>
+			<Player>1</Player>
+			<Position x="323.93696" z="211.04752"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="57468"/>
+		</Entity>
+		<Entity uid="168">
+			<Template>gaia/special_treasure_water_jars</Template>
+			<Player>1</Player>
+			<Position x="341.75043" z="225.59891"/>
+			<Orientation y="4.20734"/>
+			<Actor seed="32594"/>
+		</Entity>
+		<Entity uid="169">
+			<Template>gaia/special_treasure_water_jars</Template>
+			<Player>1</Player>
+			<Position x="310.80149" z="195.54166"/>
+			<Orientation y="1.69112"/>
+			<Actor seed="21032"/>
+		</Entity>
+		<Entity uid="170">
+			<Template>gaia/special_treasure_water_jars</Template>
+			<Player>1</Player>
+			<Position x="309.43464" z="185.88819"/>
+			<Orientation y="-1.78551"/>
+			<Actor seed="50214"/>
+		</Entity>
+		<Entity uid="171">
+			<Template>gaia/special_treasure_water_jars</Template>
+			<Player>1</Player>
+			<Position x="351.5268" z="224.51545"/>
+			<Orientation y="-6.00234"/>
+			<Actor seed="52750"/>
+		</Entity>
+	</Entities>
+	<Paths/>
+</Scenario>

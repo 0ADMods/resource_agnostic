@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <mesh>props/wrld_well_b.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/well_water.xml" attachpoint="woodbit"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="well_texture_1_a">
+      <textures><texture file="props/wrld_well_a_1.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="well_texture_1_b">
+      <textures><texture file="props/wrld_well_b_1.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="well_texture_1_c">
+      <textures><texture file="props/wrld_well_b_2.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="well_texture_1_d">
+      <textures><texture file="props/wrld_well_b_3.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+</actor>

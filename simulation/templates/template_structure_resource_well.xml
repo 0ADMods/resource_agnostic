@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_resource">
+  <Armour>
+    <Hack>25</Hack>
+    <Pierce>40</Pierce>
+    <Crush>5</Crush>
+  </Armour>
+  <BuildRestrictions>
+    <Category>Well</Category>
+  </BuildRestrictions>
+  <Capturable disable=""/>
+  <Cost>
+    <BuildTime>50</BuildTime>
+    <Resources>
+      <wood>20</wood>
+      <stone>100</stone>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="6.0" depth="6.0"/>
+    <Height>2.0</Height>
+  </Footprint>
+  <Health>
+    <Max>250</Max>
+    <SpawnEntityOnDeath>rubble/rubble_1x1</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <GenericName>Well</GenericName>
+	<VisibleClasses datatype="tokens">Well</VisibleClasses>
+    <Tooltip>Collect water</Tooltip>
+    <History>-</History>
+    <Icon>structures/field.png</Icon>
+  </Identity>
+  <Loot>
+    <xp>100</xp>
+    <water>100</water>
+  </Loot>
+  <Minimap>
+    <Color r="119" g="82" b="46"/>
+  </Minimap>
+  <Obstruction>
+    <Static width="4.0" depth="4.0"/>
+    <BlockMovement>false</BlockMovement>
+    <BlockPathfinding>false</BlockPathfinding>
+  </Obstruction>
+  <RallyPoint disable=""/>
+  <ResourceSupply>
+    <KillBeforeGather>false</KillBeforeGather>
+    <Amount>Infinity</Amount>
+    <Type>water.well</Type>
+    <MaxGatherers>1</MaxGatherers>
+  </ResourceSupply>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_field.xml</select>
+      <constructed>interface/complete/building/complete_field.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
+  <StatusBars>
+    <HeightOffset>8.0</HeightOffset>
+  </StatusBars>
+  <TerritoryDecay disable=""/>
+  <Vision>
+    <Range>0</Range>
+  </Vision>
+  <VisualActor>
+    <Actor>special/well_1.xml</Actor>
+    <FoundationActor>structures/fndn_1x1.xml</FoundationActor>
+    <SelectionShape>
+      <Footprint/>
+    </SelectionShape>
+  </VisualActor>
+</Entity>

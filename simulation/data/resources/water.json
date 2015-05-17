@@ -1,0 +1,11 @@
+{
+	"code": "water",
+	"subtypes": [
+		"well"
+	],
+	"truePrice": 50,
+	"aiAnalysis": {
+		"decreaseFactor": 50.0,
+		"influenceMapGroup": 0
+	}
+}
