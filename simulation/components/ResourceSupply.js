@@ -105,7 +105,10 @@ ResourceSupply.prototype.GetType = function()
 	// All resources must have both type and subtype
 
 	var [type, subtype] = this.template.Type.split('.');
+	
 	var resData = Resources.GetResource(type);
+	if (type === "treasure")
+		resData = { "subtypes": Resources.GetCodes() };
 	
 	if (resData && resData.subtypes.indexOf(subtype) > -1)
 		return { "generic": type, "specific": subtype };
