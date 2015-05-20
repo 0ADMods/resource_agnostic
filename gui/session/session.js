@@ -243,12 +243,19 @@ function updateTopPanel()
 		Engine.GetGUIObjectByName("civIcon").sprite = "stretched:" + g_CivData[g_Players[playerID].civ].Emblem;
 		Engine.GetGUIObjectByName("civIconOverlay").tooltip = sprintf(translate("%(civ)s - Structure Tree"), {"civ": civName});
 	}
-	
+
+	horizSpaceRepeatedObjects ("resource[n]", "n", 0);
+	var resCodes = GetSimState().resources;
+	for (var r = 0; r < resCodes.length; ++r)
+	{
+		Engine.GetGUIObjectByName("resource["+r+"]").tooltip = translate(capitalizeWord(resCodes[r]));
+		Engine.GetGUIObjectByName("resource["+r+"]_icon").sprite = "stretched:session/icons/resources/" + resCodes[r] + ".png";
+	}
+	hideRemaining("resource[", r, "]");
+
 	// Hide stuff gaia/observers don't use.
-	Engine.GetGUIObjectByName("food").hidden = !isPlayer;
-	Engine.GetGUIObjectByName("wood").hidden = !isPlayer;
-	Engine.GetGUIObjectByName("stone").hidden = !isPlayer;
-	Engine.GetGUIObjectByName("metal").hidden = !isPlayer;
+	for (let r = 0; r < resCodes.length; ++r)
+		Engine.GetGUIObjectByName("resource["+r+"]").hidden = !isPlayer;
 	Engine.GetGUIObjectByName("population").hidden = !isPlayer;
 	Engine.GetGUIObjectByName("civIcon").hidden = !isPlayer;
 	Engine.GetGUIObjectByName("diplomacyButton1").hidden = !isPlayer;
@@ -706,14 +713,15 @@ function updateDebug()
 
 function updatePlayerDisplay()
 {
-	var playerState = GetSimState().players[Engine.GetPlayerID()];
+	var simState = GetSimState();
+	var playerState = simState.players[Engine.GetPlayerID()];
 	if (!playerState)
 		return;
 
-	Engine.GetGUIObjectByName("resourceFood").caption = Math.floor(playerState.resourceCounts.food);
-	Engine.GetGUIObjectByName("resourceWood").caption = Math.floor(playerState.resourceCounts.wood);
-	Engine.GetGUIObjectByName("resourceStone").caption = Math.floor(playerState.resourceCounts.stone);
-	Engine.GetGUIObjectByName("resourceMetal").caption = Math.floor(playerState.resourceCounts.metal);
+	var resCodes = simState.resources;
+	for (let r = 0; r < resCodes.length; ++r)
+		Engine.GetGUIObjectByName("resource["+r+"]_count").caption = Math.floor(playerState.resourceCounts[resCodes[r]]);
+
 	Engine.GetGUIObjectByName("resourcePop").caption = playerState.popCount + "/" + playerState.popLimit;
 	Engine.GetGUIObjectByName("population").tooltip = translate("Population (current / limit)") + "\n" +
 					sprintf(translate("Maximum population: %(popCap)s"), { "popCap": playerState.popMax });

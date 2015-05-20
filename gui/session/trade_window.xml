@@ -16,7 +16,7 @@
 		</object>
 
 		<object size="180 0 100% 100%">
-			<repeat count="4">
+			<repeat count="8">
 				<object name="tradeResource[n]" size="0 0 58 32">
 					<object name="tradeResourceButton[n]" size="4 0 36 100%" type="button" style="StoneButton">
 						<object name="tradeResourceIcon[n]" type="image" ghost="true"/>

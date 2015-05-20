@@ -29,8 +29,7 @@ const INITIAL_MENU_POSITION = "100%-164 " + MENU_TOP + " 100% " + MENU_BOTTOM;
 // Number of pixels per millisecond to move
 const MENU_SPEED = 1.2;
 
-// Trade menu: available resources and step for probability changes
-const RESOURCES = ["food", "wood", "stone", "metal"];
+// Trade menu: step for probability changes
 const STEP = 5;
 
 var isMenuOpen = false;
@@ -268,6 +267,7 @@ function openDiplomacy()
 	isDiplomacyOpen = true;
 
 	let we = Engine.GetPlayerID();
+	var resCodes = GetSimState().resources;
 
 	// Get offset for one line
 	let onesize = Engine.GetGUIObjectByName("diplomacyPlayer[0]").size;
@@ -299,16 +299,21 @@ function openDiplomacy()
 		if (i == we || g_Players[we].state != "active" || g_Players[i].state != "active")
 		{
 			// Hide the unused/unselectable options
-			for each (let a in ["TributeFood", "TributeWood", "TributeStone", "TributeMetal", "Ally", "Neutral", "Enemy"])
+			for (let a of ["Ally", "Neutral", "Enemy"])
 				Engine.GetGUIObjectByName("diplomacyPlayer"+a+"["+(i-1)+"]").hidden = true;
+			for (let r in resCodes)
+				Engine.GetGUIObjectByName("diplomacyPlayer["+(i-1)+"]_tribute["+r+"]").hidden = true;
 			Engine.GetGUIObjectByName("diplomacyAttackRequest["+(i-1)+"]").hidden = true;
 			continue;
 		}
 
 		// Tribute
-		for each (let resource in ["food", "wood", "stone", "metal"])
+		horizSpaceRepeatedObjects ("diplomacyPlayer["+(i-1)+"]_tribute[r]", "r", 0);
+		for (let r in resCodes)
 		{
-			let button = Engine.GetGUIObjectByName("diplomacyPlayerTribute"+resource[0].toUpperCase()+resource.substring(1)+"["+(i-1)+"]");
+			let resource = resCodes[r];
+			let button = Engine.GetGUIObjectByName("diplomacyPlayer["+(i-1)+"]_tribute["+r+"]");
+			Engine.GetGUIObjectByName("diplomacyPlayer["+(i-1)+"]_tribute["+r+"]_image").sprite = "stretched:session/icons/resources/"+resource+".png";
 			button.onpress = (function(player, resource, button){
 				// Implement something like how unit batch training works. Shift+click to send 500, shift+click+click to send 1000, etc.
 				// Also see input.js (searching for "INPUT_MASSTRIBUTING" should get all the relevant parts).
@@ -320,12 +325,10 @@ function openDiplomacy()
 						inputState = INPUT_MASSTRIBUTING;
 						multiplier += multiplier == 1 ? 4 : 5;
 					}
-					let amounts = {
-						"food": (resource == "food" ? 100 : 0) * multiplier,
-						"wood": (resource == "wood" ? 100 : 0) * multiplier,
-						"stone": (resource == "stone" ? 100 : 0) * multiplier,
-						"metal": (resource == "metal" ? 100 : 0) * multiplier,
-					};
+					let amounts = {};
+					for (let res of resCodes)
+						amounts[res] = (resource == res ? 100 : 0) * multiplier;
+					
 					button.tooltip = formatTributeTooltip(g_Players[player], resource, amounts[resource]);
 					// This is in a closure so that we have access to `player`, `amounts`, and `multiplier` without some
 					// evil global variable hackery.
@@ -412,19 +415,15 @@ function openTrade()
 
 	var proba = Engine.GuiInterfaceCall("GetTradingGoods");
 	var button = {};
-	var selec = RESOURCES[0];
-	for (var i = 0; i < RESOURCES.length; ++i)
+	var resCodes = GetSimState().resources;
+	var selec = resCodes[0];
+	horizSpaceRepeatedObjects ("tradeResource[n]", "n", 0);
+	hideRemaining("tradeResource[", resCodes.length, "]");
+	
+	for (var i = 0; i < resCodes.length; ++i)
 	{
 		var buttonResource = Engine.GetGUIObjectByName("tradeResource["+i+"]");
-		if (i > 0)
-		{
-			var size = Engine.GetGUIObjectByName("tradeResource["+(i-1)+"]").size;
-			var width = size.right - size.left;
-			size.left += width;
-			size.right += width;
-			Engine.GetGUIObjectByName("tradeResource["+i+"]").size = size;
-		}
-		var resource = RESOURCES[i];
+		var resource = resCodes[i];
 		proba[resource] = (proba[resource] ? proba[resource] : 0);
 		var buttonResource = Engine.GetGUIObjectByName("tradeResourceButton["+i+"]");
 		var icon = Engine.GetGUIObjectByName("tradeResourceIcon["+i+"]");
@@ -439,7 +438,7 @@ function openTrade()
 			return function() {
 				if (Engine.HotkeyIsPressed("session.fulltradeswap"))
 				{
-					for (var ress of RESOURCES)
+					for (var ress of resCodes)
 						proba[ress] = 0;
 					proba[resource] = 100;
 					Engine.PostNetworkCommand({"type": "set-trading-goods", "tradingGoods": proba});
@@ -706,7 +705,7 @@ function formatTributeTooltip(player, resource, amount)
 	let playerColor = rgbToGuiColor(player.color);
 	return sprintf(translate("Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click to tribute %(greaterAmount)s."), {
 		resourceAmount: amount,
-		resourceType: getLocalizedResourceName(resource, "withinSentence"),
+		resourceType: translateWithContext("withinSentence", capitalizeWord(resource)),
 		playerName: "[color=\"" + playerColor + "\"]" + player.name + "[/color]",
 		greaterAmount: (amount < 500 ? 500 : amount + 500)
 	});

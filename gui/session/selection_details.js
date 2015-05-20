@@ -15,9 +15,9 @@ function getResourceTypeDisplayName(resourceType)
 	var resourceCode = resourceType["generic"];
 	var displayName = "";
 	if (resourceCode == "treasure")
-		displayName = getLocalizedResourceName(resourceType["specific"], "firstWord");
+		displayName = translate(capitalizeWord(resourceType["specific"]));
 	else
-		displayName = getLocalizedResourceName(resourceCode, "firstWord");
+		displayName = translate(capitalizeWord(resourceCode));
 	return displayName;
 }
 

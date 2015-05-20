@@ -47,15 +47,14 @@ var g_SelectionPanels = {};
 g_SelectionPanels.Barter = {
 	"getMaxNumberOfItems": function()
 	{
-		return 4;
+		return 8;
 	},
 	"rowLength": 4,
 	"getItems": function(unitEntState, selection)
 	{
 		if (!unitEntState.barterMarket)
 			return [];
-		// ["food", "wood", "stone", "metal"]
-		return BARTER_RESOURCES;
+		return GetSimState().resources;
 	},
 	"addData": function(data)
 	{
@@ -75,6 +74,8 @@ g_SelectionPanels.Barter = {
 		data.amountToSell = BARTER_RESOURCE_AMOUNT_TO_SELL;
 		if (Engine.HotkeyIsPressed("session.massbarter"))
 			data.amountToSell *= BARTER_BUNCH_MULTIPLIER;
+		if (!g_barterSell)
+			g_barterSell = GetSimState().resources[0];
 		data.isSelected = data.item == g_barterSell;
 		return true;
 	},
@@ -87,7 +88,7 @@ g_SelectionPanels.Barter = {
 	},
 	"setTooltip": function(data)
 	{
-		var resource = getLocalizedResourceName(data.item, "withinSentence");
+		var resource = translateWithContext("withinSentence", capitalizeWord(data.item));
 		data.button.Buy.tooltip = sprintf(translate("Buy %(resource)s"), {"resource": resource});
 		data.button.Sell.tooltip = sprintf(translate("Sell %(resource)s"), {"resource": resource});
 	},

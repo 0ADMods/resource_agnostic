@@ -2,7 +2,6 @@
 // Barter constants
 const BARTER_RESOURCE_AMOUNT_TO_SELL = 100;
 const BARTER_BUNCH_MULTIPLIER = 5;
-const BARTER_RESOURCES = ["food", "wood", "stone", "metal"];
 const BARTER_ACTIONS = ["Sell", "Buy"];
 
 // Gate constants
@@ -10,9 +9,11 @@ const GATE_ACTIONS = ["lock", "unlock"];
 
 // ==============================================
 // BARTER HELPERS
-// Resources to sell on barter panel
-var g_barterSell = "food";
+// Resource to sell by default on barter panel
+// ! - cannot be set as we don't know the possible resources yet
+var g_barterSell = null;
 
+// ==============================================
 // FORMATION HELPERS
 // Check if the selection can move into formation, and cache the result
 function canMoveSelectionIntoFormation(formationTemplate)
