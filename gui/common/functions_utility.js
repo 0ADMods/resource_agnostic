@@ -83,6 +83,14 @@ function escapeText(text)
 	return text.substr(0, 255).replace(/\\/g, "\\\\").replace(/\[/g, "\\[");
 }
 
+function capitalizeWord(word)
+{
+	if (!word)
+		return word;
+
+	return word[0].toUpperCase() + word.slice(1).toLowerCase();
+}
+
 // ====================================================================
 
 // Load default player data, for when it's not otherwise specified
