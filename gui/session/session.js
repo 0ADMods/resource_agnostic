@@ -358,7 +358,8 @@ function leaveGame(willRejoin)
 							"timeElapsed" : extendedSimState.timeElapsed,
 							"playerStates": extendedSimState.players,
 							"players": g_Players,
-							"mapSettings": mapSettings
+							"mapSettings": mapSettings,
+							"resources": GetSimState().resources
 						 });
 }
 

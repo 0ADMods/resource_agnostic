@@ -112,7 +112,7 @@ function calculateUnits(playerState, position)
 
 function calculateResources(playerState, position)
 {
-	var type = RESOURCES_TYPES[position];
+	var type = g_GameData.resources[position];
 	return INCOME_COLOR + playerState.statistics.resourcesGathered[type] + '[/color] / ' +
 	OUTCOME_COLOR + (playerState.statistics.resourcesUsed[type] - playerState.statistics.resourcesSold[type]) + '[/color]';
 }
@@ -122,7 +122,7 @@ function calculateTotalResources(playerState, position)
 	var totalGathered = 0;
 	var totalUsed = 0;
 
-	for each (var type in RESOURCES_TYPES)
+	for (let type of g_GameData.resources)
 	{
 		totalGathered += playerState.statistics.resourcesGathered[type];
 		totalUsed += playerState.statistics.resourcesUsed[type] - playerState.statistics.resourcesSold[type];
@@ -185,7 +185,7 @@ function calculateResourcesTeam(counters)
 
 function calculateResourceExchanged(playerState, position)
 {
-	var type = RESOURCES_TYPES[position];
+	var type = g_GameData.resources[position];
 	return INCOME_COLOR + '+' + playerState.statistics.resourcesBought[type] + '[/color] ' +
 		OUTCOME_COLOR + '-' + playerState.statistics.resourcesSold[type] + '[/color]';
 }

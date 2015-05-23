@@ -71,10 +71,6 @@ var panelsData = [
 	{	// resources panel
 		"headings": [	// headings on resources panel
 			{ "caption": translate("Player name"), "yStart": 26, "width": 200 },
-			{ "caption": translate("Food"), "yStart": 34, "width": 100 },
-			{ "caption": translate("Wood"), "yStart": 34, "width": 100 },
-			{ "caption": translate("Stone"), "yStart": 34, "width": 100 },
-			{ "caption": translate("Metal"), "yStart": 34, "width": 100 },
 			{ "caption": translate("Total"), "yStart": 34, "width": 110 },
 			{ "caption": translate("Treasures collected"), "yStart": 16, "width": 100 },
 			{ "caption": translate("Tributes (Sent / Received)"), "yStart": 16, "width": 121 }
@@ -83,10 +79,6 @@ var panelsData = [
 			{ "caption": translate("Resource Statistics (Gathered / Used)"), "yStart": 16, "width": (100 * 4 + 110) }, // width = 510
 		],
 		"counters": [	// counters on resources panel
-			{"width": 100, "fn": calculateResources},
-			{"width": 100, "fn": calculateResources},
-			{"width": 100, "fn": calculateResources},
-			{"width": 100, "fn": calculateResources},
 			{"width": 110, "fn": calculateTotalResources},
 			{"width": 100, "fn": calculateTreasureCollected}, 
 			{"width": 121, "fn": calculateTributeSent}
@@ -96,19 +88,11 @@ var panelsData = [
 	{	// market panel
 		"headings": [	// headings on market panel
 			{ "caption": translate("Player name"), "yStart": 26, "width": 200 },
-			{ "caption": translate("Food exchanged"), "yStart": 16, "width": 100 },
-			{ "caption": translate("Wood exchanged"), "yStart": 16, "width": 100 },
-			{ "caption": translate("Stone exchanged"), "yStart": 16, "width": 100 },
-			{ "caption": translate("Metal exchanged"), "yStart": 16, "width": 100 },
 			{ "caption": translate("Barter efficiency"), "yStart": 16, "width": 100 },
 			{ "caption": translate("Trade income"), "yStart": 16, "width": 100 }
 		],
 		"titleHeadings": [],
 		"counters": [	// counters on market panel
-			{"width": 100, "fn": calculateResourceExchanged},
-			{"width": 100, "fn": calculateResourceExchanged},
-			{"width": 100, "fn": calculateResourceExchanged},
-			{"width": 100, "fn": calculateResourceExchanged},
 			{"width": 100, "fn": calculateBatteryEfficiency},
 			{"width": 100, "fn": calculateTradeIncome}
 		],

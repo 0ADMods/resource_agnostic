@@ -1,7 +1,7 @@
 // Max player slots for any map (TODO: should read from config)
 const MAX_SLOTS = 8;
 const MAX_TEAMS = 4;
-const MAX_HEADINGTITLE = 8;
+const MAX_HEADINGTITLE = 12;
 
 // const for filtering long collective headings
 const LONG_HEADING_WIDTH = 250;
@@ -22,11 +22,12 @@ const KILLED_COLOR = '[color="196 198 255"]';
 
 const BUILDINGS_TYPES = [ "total", "House", "Economic", "Outpost", "Military", "Fortress", "CivCentre", "Wonder" ];
 const UNITS_TYPES = [ "total", "Infantry", "Worker", "Cavalry", "Champion", "Hero", "Ship" ];
-const RESOURCES_TYPES = [ "food", "wood", "stone", "metal" ];
 
 // colors used for gathered and traded resources
 const INCOME_COLOR = '[color="201 255 200"]';
 const OUTCOME_COLOR = '[color="255 213 213"]';
+
+const PANEL_NAMES = [ 'scorePanel', 'buildingsPanel', 'unitsPanel', 'resourcesPanel', 'marketPanel', 'miscPanel' ];
 
 const DEFAULT_DECIMAL = "0.00";
 const INFINITE_SYMBOL = "\u221E";
@@ -45,8 +46,6 @@ var g_GameData;
  */
 function selectPanel(panelNumber)
 {
-	var panelNames = [ 'scorePanel', 'buildingsPanel', 'unitsPanel', 'resourcesPanel', 'marketPanel', 'miscPanel'];
-
 	function adjustTabDividers(tabSize)
 	{
 		var leftSpacer = Engine.GetGUIObjectByName("tabDividerLeft");
@@ -55,13 +54,13 @@ function selectPanel(panelNumber)
 		rightSpacer.size = (tabSize.right - 2) + " " + rightSpacer.size.top + " 100%-20 " + rightSpacer.size.bottom;
 	}
 
-	for (var i = 0; i < panelNames.length; ++i)
+	for (var i = 0; i < PANEL_NAMES.length; ++i)
 	{
-		Engine.GetGUIObjectByName(panelNames[i] + 'Button').sprite = "BackgroundTab";
+		Engine.GetGUIObjectByName(PANEL_NAMES[i] + 'Button').sprite = "BackgroundTab";
 	}
 
-	Engine.GetGUIObjectByName(panelNames[panelNumber] + 'Button').sprite = "ForegroundTab";
-	adjustTabDividers(Engine.GetGUIObjectByName(panelNames[panelNumber] + 'Button').size);
+	Engine.GetGUIObjectByName(PANEL_NAMES[panelNumber] + 'Button').sprite = "ForegroundTab";
+	adjustTabDividers(Engine.GetGUIObjectByName(PANEL_NAMES[panelNumber] + 'Button').size);
 
 	updatePanelData(panelsData[panelNumber]);
 }
@@ -182,6 +181,29 @@ function init(data)
 	}
 	else				// teams are NOT locked
 		g_Teams = false;
+
+	// Resource names and counters
+	var resHeads = [];
+	var tradeHeads = [];
+	var resPanel = panelsData[PANEL_NAMES.indexOf("resourcesPanel")];
+	var tradePanel = panelsData[PANEL_NAMES.indexOf("marketPanel")];
+	for (let code of g_GameData.resources)
+	{
+		resHeads.push({
+				"caption": translate(capitalizeWord(code)),
+				"yStart": 34, "width": 100
+			});
+		resPanel.counters.unshift({"width": 100, "fn": calculateResources});
+		
+		tradeHeads.push({
+				"caption": translate(capitalizeWord(code)+" exchanged"),
+				"yStart": 16, "width": 100,
+			});
+		tradePanel.counters.unshift({"width": 100, "fn": calculateResourceExchanged});
+	}
+	resPanel.headings.splice.apply(resPanel.headings, [1, 0].concat(resHeads));
+	resPanel.titleHeadings[0].width = (100 * g_GameData.resources.length) + 110;
+	tradePanel.headings.splice.apply(tradePanel.headings, [1, 0].concat(tradeHeads));
 
 	// Erase teams data if teams are not displayed
 	if (!g_Teams)

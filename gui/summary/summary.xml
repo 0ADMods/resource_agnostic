@@ -103,11 +103,11 @@
 				<object name="playerNameHeading" type="text" style="ModernLeftTabLabelText">
 					<translatableAttribute id="caption">Player name</translatableAttribute>
 				</object>
-				<repeat var="x" count="8">
+				<repeat var="x" count="12">
 					<object name="titleHeading[x]" type="text" style="ModernTabLabelText">
 					</object>
 				</repeat>
-				<repeat var="x" count="8">
+				<repeat var="x" count="12">
 					<object name="Heading[x]" type="text" style="ModernTabLabelText">
 					</object>
 				</repeat>
@@ -122,7 +122,7 @@
 								<object name="playerColorBoxt[i][n]" type="image" size="10 4 30 24"/>
 								<object name="playerNamet[i][n]" type="text"  size="40 2 208 100%" style="ModernLeftLabelText" />
 								<object name="civIcont[i][n]" type="image" size="208 0 240 32"  tooltip_style="sessionToolTip"/>
-								<repeat var="x" count="8">
+								<repeat var="x" count="12">
 									<object name="valueDataTeam[i][n][x]" type="text" style="ModernTabLabelText">
 									</object>
 								</repeat>
@@ -130,7 +130,7 @@
 						</repeat>
 					</object>
 					<object name="teamHeadingt[i]" type="text" style="ModernLeftTabLabelText"/>
-					<repeat var="x" count="8">
+					<repeat var="x" count="12">
 						<object name="valueDataTeam[i][x]" type="text" style="ModernTabLabelText">
 						</object>
 					</repeat>
@@ -145,7 +145,7 @@
 						</object>
 						<object name="playerName[n]" type="text"  size="40 2 208 100%" style="ModernLeftLabelText"/>
 						<object name="civIcon[n]" type="image" size="208 0 240 32"/>
-						<repeat var="x" count="8">
+						<repeat var="x" count="12">
 							<object name="valueData[n][x]" type="text" style="ModernTabLabelText">
 							</object>
 						</repeat>
