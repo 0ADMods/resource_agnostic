@@ -1,10 +1,5 @@
 {
 	"code": "stone",
-	"name": "Stone",
-	"icons": {
-		"large": "session/icons/resources/stone.png",
-		"small": "session/icons/resources/stone_small.png"
-	},
 	"subtypes": [
 		"rock",
 		"ruins"

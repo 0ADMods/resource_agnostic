@@ -18,7 +18,7 @@ Resources.LoadData = function()
 		let data = Engine.ReadJSONFile("resources/"+filename+".json");
 		if (!data)
 			continue;
-	//	translateObjectKeys(data, ["name"]);
+
 		this.resourceData[data.code] = data;
 	}
 	return this.resourceData;

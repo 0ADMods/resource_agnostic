@@ -1,9 +1,9 @@
 {
     "name": "ResourceAgnostic",
-    "version": "0.0.1",
-    "label": "Resource Agnostic Components",
+    "version": "0.1",
+    "label": "Resource Agnostic Components and UI",
     "url": "https://github.com/0ADMods/Resource_Agnostic_Components",
-    "description": "Changing JS Components so that Resources are not Hard-coded",
+    "description": "De-Hardcoding gatherable resources in 0AD",
     "dependencies": ["0ad=0.0.19"],
     "type": "functionality"
 }

@@ -1,10 +1,5 @@
 {
 	"code": "wood",
-	"name": "Wood",
-	"icons": {
-		"large": "session/icons/resources/wood.png",
-		"small": "session/icons/resources/wood_small.png"
-	},
 	"subtypes": [
 		"tree",
 		"ruins"
