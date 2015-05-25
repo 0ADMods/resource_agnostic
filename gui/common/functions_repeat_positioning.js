@@ -10,7 +10,7 @@
  * @param margin The gap, in px, between the repeated objects
  * @return The number of elements affected
  */
-function horizSpaceRepeatedObjects (basename, splitvar, margin)
+function horizSpaceRepeatedObjects (basename, splitvar="n", margin=0)
 {
 	basename = basename.split("["+splitvar+"]", 2);
 	var objObj = Engine.GetGUIObjectByName(basename.join("[0]"));
@@ -30,13 +30,44 @@ function horizSpaceRepeatedObjects (basename, splitvar, margin)
 }
 
 /**
+ * Horizontally fit objects repeated with the `<repeat>` tag within a parent object
+ * @param basename The base name of the object, such as "object[n]" or "object[a]_sub[b]"
+ * @param splitvar The var identifying the repeat count, without the square brackets
+ * @param margin The gap, in px, between the repeated objects
+ * @param limit The number of elements to fit
+ * @return The number of elements affected
+ */
+function horizFitRepeatedObjects (basename, splitvar="n", margin=0, limit=0)
+{
+	basename = basename.split("["+splitvar+"]", 2);
+
+	var objObj;
+	if (limit == 0)
+		do
+			objObj = Engine.GetGUIObjectByName(basename.join("["+ ++limit +"]"));
+		while (objObj !== undefined)
+
+	for (let c = 0; c < limit; ++c)
+	{
+		objObj = Engine.GetGUIObjectByName(basename.join("["+ c +"]"));
+		let objSize = objObj.size;
+		objSize.rleft = c * (100/limit);
+		objSize.rright = (c+1) * (100/limit);
+		objSize.right = -margin;
+		objObj.size = objSize;
+	}
+	
+	return limit;
+}
+
+/**
  * Vertically spaces same-height objects repeated with the `<repeat>` tag
  * @param basename The base name of the object, such as "object[n]" or "object[a]_sub[b]"
  * @param splitvar The var identifying the repeat count, without the square brackets
  * @param margin The gap, in px, between the repeated objects
  * @return The number of elements affected
  */
-function vertiSpaceRepeatedObjects (basename, splitvar, margin)
+function vertiSpaceRepeatedObjects (basename, splitvar="n", margin=0)
 {
 	basename = basename.split("["+splitvar+"]", 2);
 	var objObj = Engine.GetGUIObjectByName(basename.join("[0]"));

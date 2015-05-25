@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<object size="10 0 50% 100%">
+<object size="10 0 50%-90-52 100%">
   <repeat count="8">
     <object name="resource[n]" size="0 0 90 100%" type="image" style="resourceCounter" tooltip_style="sessionToolTipBold">
       <object size="0 -4 40 36" type="image" name="resource[n]_icon" ghost="true"/>

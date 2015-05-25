@@ -243,14 +243,14 @@ function updateTopPanel()
 		Engine.GetGUIObjectByName("civIcon").sprite = "stretched:" + g_CivData[g_Players[playerID].civ].Emblem;
 		Engine.GetGUIObjectByName("civIconOverlay").tooltip = sprintf(translate("%(civ)s - Structure Tree"), {"civ": civName});
 	}
-
-	horizSpaceRepeatedObjects ("resource[n]", "n", 0);
+	
 	var resCodes = GetSimState().resources;
 	for (var r = 0; r < resCodes.length; ++r)
 	{
 		Engine.GetGUIObjectByName("resource["+r+"]").tooltip = translate(capitalizeWord(resCodes[r]));
 		Engine.GetGUIObjectByName("resource["+r+"]_icon").sprite = "stretched:session/icons/resources/" + resCodes[r] + ".png";
 	}
+	horizFitRepeatedObjects ("resource[n]", "n", 0, r);
 	hideRemaining("resource[", r, "]");
 
 	// Hide stuff gaia/observers don't use.

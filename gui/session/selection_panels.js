@@ -120,8 +120,10 @@ g_SelectionPanels.Barter = {
 	},
 	"setPosition": function(data)
 	{
-		setPanelObjectPosition(data.button.Sell, data.i, data.rowLength);
-		setPanelObjectPosition(data.button.Buy, data.i + data.rowLength, data.rowLength);
+		var sellPos = data.i + (data.i >= data.rowLength ? data.rowLength : 0);
+		var buyPos = data.i + data.rowLength * (data.i >= data.rowLength ? 2 : 1);
+		setPanelObjectPosition(data.button.Sell, sellPos, data.rowLength);
+		setPanelObjectPosition(data.button.Buy, buyPos, data.rowLength);
 	},
 },
 

@@ -370,7 +370,13 @@ function openDiplomacy()
 		}
 	}
 
-	Engine.GetGUIObjectByName("diplomacyDialogPanel").hidden = false;
+	var dialog = Engine.GetGUIObjectByName("diplomacyDialogPanel");
+	var size = dialog.size;
+	var wid = resCodes.length * 10;
+	size.left = -(260 + wid);
+	size.right = (260 + wid);
+	dialog.size = size;
+	dialog.hidden = false;
 }
 
 function closeDiplomacy()
@@ -593,7 +599,13 @@ function openTrade()
 	}
 	Engine.GetGUIObjectByName("shipTraders").caption = caption;
 
-	Engine.GetGUIObjectByName("tradeDialogPanel").hidden = false;
+	var dialog = Engine.GetGUIObjectByName("tradeDialogPanel");
+	var size = dialog.size;
+	var wid = resCodes.length * (58/2);
+	size.left = -(134 + wid);
+	size.right = (134 + wid);
+	dialog.size = size;
+	dialog.hidden = false;
 }
 
 function closeTrade()
