@@ -1,11 +1,3 @@
-const COST_DISPLAY_NAMES = {
-	"food": '[icon="iconFood"]',
-	"wood": '[icon="iconWood"]',
-	"stone": '[icon="iconStone"]',
-	"metal": '[icon="iconMetal"]',
-	"population": '[icon="iconPopulation"]',
-	"time": '[icon="iconTime"]'
-};
 
 const txtFormats = {
 	"unit": ['[font="sans-10"][color="orange"]', '[/color][/font]'],
@@ -225,11 +217,7 @@ function getAttackTooltip(template)
  */
 function getCostComponentDisplayName(costComponentName)
 {
-	if (costComponentName in COST_DISPLAY_NAMES)
-		return COST_DISPLAY_NAMES[costComponentName];
-
-	warn(sprintf("The specified cost component, ‘%(component)s’, is not currently supported.", { component: costComponentName }));
-	return "";
+	return "[icon=\"icon"+capitalizeWord(costComponentName)+"\"]";
 }
 
 /**
@@ -256,12 +244,12 @@ function getEntityCostComponentsTooltipString(template, trainNum, entity)
 	totalCosts.time = Math.ceil(template.cost.time * (entity ? Engine.GuiInterfaceCall("GetBatchTime", {"entity": entity, "batchSize": trainNum}) : 1));
 
 	var costs = [];
-	if (totalCosts.food) costs.push(sprintf(translate("%(component)s %(cost)s"), { component: getCostComponentDisplayName("food"), cost: totalCosts.food }));
-	if (totalCosts.wood) costs.push(sprintf(translate("%(component)s %(cost)s"), { component: getCostComponentDisplayName("wood"), cost: totalCosts.wood }));
-	if (totalCosts.metal) costs.push(sprintf(translate("%(component)s %(cost)s"), { component: getCostComponentDisplayName("metal"), cost: totalCosts.metal }));
-	if (totalCosts.stone) costs.push(sprintf(translate("%(component)s %(cost)s"), { component: getCostComponentDisplayName("stone"), cost: totalCosts.stone }));
-	if (totalCosts.population) costs.push(sprintf(translate("%(component)s %(cost)s"), { component: getCostComponentDisplayName("population"), cost: totalCosts.population }));
-	if (totalCosts.time) costs.push(sprintf(translate("%(component)s %(cost)s"), { component: getCostComponentDisplayName("time"), cost: totalCosts.time }));
+	for (let c in template.cost)
+		if (c === "populationBonus")
+			continue;
+		else if (totalCosts[c])
+			costs.push(sprintf(translate("%(component)s %(cost)s"), { component: getCostComponentDisplayName(c), cost: totalCosts[c] }));
+
 	return costs;
 }
 
