@@ -704,7 +704,7 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 // creates a map of resource density
 m.SharedScript.prototype.createResourceMaps = function(sharedScript) {
 	
-	for (var resource in this.decreaseFactor)
+	for (let resource in this.decreaseFactor)
 	{
 		// if there is no resourceMap create one with an influence for everything with that resource
 		if (!this.resourceMaps[resource])
@@ -715,21 +715,23 @@ m.SharedScript.prototype.createResourceMaps = function(sharedScript) {
 			this.CCResourceMaps[resource] = new m.Map(sharedScript, "resource");
 		}
 	}
-	var cellSize = this.resourceMaps["food"].cellSize;
 	for (let ent of sharedScript._entities.values())
 	{
 		if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure") {
-			var resource = ent.resourceSupplyType().generic;
-			var x = Math.floor(ent.position()[0] / cellSize);
-			var z = Math.floor(ent.position()[1] / cellSize);
-			var strength = Math.floor(ent.resourceSupplyMax()/this.decreaseFactor[resource]);
-			if (resource === "wood" || resource === "food")
+			let resource = ent.resourceSupplyType().generic;
+			if (!this.resourceMaps[resource])
+				continue;
+			let cellSize = this.resourceMaps[resource].cellSize;
+			let x = Math.floor(ent.position()[0] / cellSize);
+			let z = Math.floor(ent.position()[1] / cellSize);
+			let strength = Math.floor(ent.resourceSupplyMax()/this.decreaseFactor[resource]);
+			if (this.influenceMapGroup[resource] === 0)
 			{
 				this.CCResourceMaps[resource].addInfluence(x, z, 15, strength/2.0,'constant');
 				this.resourceMaps[resource].addInfluence(x, z, 9.0, strength,'constant');
 				this.resourceMaps[resource].addInfluence(x, z, 2, -5,'constant');
 			}
-			else if (resource === "stone" || resource === "metal")
+			else if (this.influenceMapGroup[resource] === 1)
 			{
 				this.CCResourceMaps[resource].addInfluence(x, z, 30, strength,'constant');
 				this.resourceMaps[resource].addInfluence(x, z, 12.0, strength/1.5);
@@ -758,7 +760,6 @@ m.SharedScript.prototype.updateResourceMaps = function(sharedScript, events)
 			this.CCResourceMaps[resource] = new m.Map(sharedScript, "resource");
 		}
 	}
-	var cellSize = this.resourceMaps["food"].cellSize;
 	// Look for destroy events and subtract the entities original influence from the resourceMap
 	// TODO: perhaps do something when dropsites appear/disappear.
 	let destEvents = events["Destroy"];
@@ -772,16 +773,19 @@ m.SharedScript.prototype.updateResourceMaps = function(sharedScript, events)
 		if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure")
 		{
 			let resource = ent.resourceSupplyType().generic;
+			if (!this.resourceMaps[resource])
+				continue;
+			let cellSize = this.resourceMaps[resource].cellSize;
 			let x = Math.floor(ent.position()[0] / cellSize);
 			let z = Math.floor(ent.position()[1] / cellSize);
 			let strength = Math.floor(ent.resourceSupplyMax()/this.decreaseFactor[resource]);
-			if (resource === "wood" || resource === "food")
+			if (this.influenceMapGroup[resource] === 0)
 			{
 				this.resourceMaps[resource].addInfluence(x, z, 2, 5,'constant');
 				this.resourceMaps[resource].addInfluence(x, z, 9.0, -strength,'constant');
 				this.CCResourceMaps[resource].addInfluence(x, z, 15, -strength/2.0,'constant');
 			}
-			else if (resource === "stone" || resource === "metal")
+			else if (this.influenceMapGroup[resource] === 1)
 			{
 				this.resourceMaps[resource].addInfluence(x, z, 8, 50);
 				this.resourceMaps[resource].addInfluence(x, z, 12.0, -strength/1.5);
@@ -798,16 +802,19 @@ m.SharedScript.prototype.updateResourceMaps = function(sharedScript, events)
 		if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure")
 		{
 			let resource = ent.resourceSupplyType().generic;
+			if (!this.resourceMaps[resource])
+				continue;
+			let cellSize = this.resourceMaps[resource].cellSize;
 			let x = Math.floor(ent.position()[0] / cellSize);
 			let z = Math.floor(ent.position()[1] / cellSize);
 			let strength = Math.floor(ent.resourceSupplyMax()/this.decreaseFactor[resource]);
-			if (resource === "wood" || resource === "food")
+			if (this.influenceMapGroup[resource] === 0)
 			{
 				this.CCResourceMaps[resource].addInfluence(x, z, 15, strength/2.0,'constant');
 				this.resourceMaps[resource].addInfluence(x, z, 9.0, strength,'constant');
 				this.resourceMaps[resource].addInfluence(x, z, 2, -5,'constant');
 			}
-			else if (resource === "stone" || resource === "metal")
+			else if (this.influenceMapGroup[resource] === 1)
 			{
 				this.CCResourceMaps[resource].addInfluence(x, z, 30, strength,'constant');
 				this.resourceMaps[resource].addInfluence(x, z, 12.0, strength/1.5);

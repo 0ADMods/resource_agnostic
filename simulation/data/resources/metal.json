@@ -8,5 +8,9 @@
 	"subtypes": [
 		"ore"
 	],
-	"truePrice": 100
+	"truePrice": 100,
+	"aiAnalysis": {
+		"decreaseFactor": 90.0,
+		"influenceMapGroup": 1
+	}
 }

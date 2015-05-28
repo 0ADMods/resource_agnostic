@@ -149,6 +149,9 @@ GuiInterface.prototype.GetSimulationState = function(player)
 
 	// Add Resource Codes
 	ret.resources = Resources.GetCodes();
+	ret.aiResourceAnalysis = {};
+	for (let res of ret.resources)
+		ret.aiResourceAnalysis[res] = Resources.GetResource(res).aiAnalysis || null;
 
 	// Add basic statistics to each player
 	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);

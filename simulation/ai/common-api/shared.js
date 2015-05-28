@@ -6,7 +6,7 @@ m.SharedScript = function(settings)
 {
 	if (!settings)
 		return;
-	
+
 	this._players = settings.players;
 	this._templates = settings.templates;
 	this._derivedTemplates = {};
@@ -28,11 +28,11 @@ m.SharedScript = function(settings)
 
 	// A few notes about these maps. They're updated by checking for "create" and "destroy" events for all resources
 	// TODO: change the map when the resource amounts change for at least stone and metal mines.
-	this.resourceMaps = {}; // Contains maps showing the density of wood, stone and metal
-	this.CCResourceMaps = {}; // Contains maps showing the density of wood, stone and metal, optimized for CC placement.
+	this.resourceMaps = {}; // Contains maps showing the density of resources
+	this.CCResourceMaps = {}; // Contains maps showing the density of resources, optimized for CC placement.
 	// Resource maps data.
-	// By how much to divide the resource amount when filling the map (ie a tree having 200 wood is "4").
-	this.decreaseFactor = {'wood': 50.0, 'stone': 90.0, 'metal': 90.0, 'food': 40.0};
+	this.decreaseFactor = {};
+	this.influenceMapGroup = {};
 };
 
 //Return a simple object (using no classes etc) that will be serialized into saved games
@@ -134,6 +134,8 @@ m.SharedScript.prototype.init = function(state, deserialization)
 	this.mapSize = state.mapSize;
 	this.gameType = state.gameType;
 	this.barterPrices = state.barterPrices;
+	
+	m.Resources.prototype.types = state.resources;
 
 	this.passabilityMap = state.passabilityMap;
 	if (this.mapSize % this.passabilityMap.width != 0)
@@ -175,7 +177,15 @@ m.SharedScript.prototype.init = function(state, deserialization)
 	this.accessibility = new m.Accessibility();
 	this.accessibility.init(state, this.terrainAnalyzer);
 	
-	// defined in TerrainAnalysis.js
+	// By how much to divide the resource amount when filling the map (ie a tree having 200 wood is "4").
+	for (let res in state.aiResourceAnalysis)
+	{
+		if (!state.aiResourceAnalysis[res])
+			continue;
+		this.decreaseFactor[res] = state.aiResourceAnalysis[res].decreaseFactor;
+		this.influenceMapGroup[res] = state.aiResourceAnalysis[res].influenceMapGroup;
+	}
+	// defined in terrain-analysis.js
 	this.createResourceMaps(this);
 
 	this.gameState = {};

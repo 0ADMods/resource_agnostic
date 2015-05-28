@@ -9,5 +9,9 @@
 		"tree",
 		"ruins"
 	],
-	"truePrice": 100
+	"truePrice": 100,
+	"aiAnalysis": {
+		"decreaseFactor": 50.0,
+		"influenceMapGroup": 0
+	}
 }
