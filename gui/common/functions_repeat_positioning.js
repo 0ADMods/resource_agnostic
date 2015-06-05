@@ -10,7 +10,7 @@
  * @param margin The gap, in px, between the repeated objects
  * @return The number of elements affected
  */
-function horizSpaceRepeatedObjects (basename, splitvar="n", margin=0)
+function horizSpaceRepeatedObjects(basename, splitvar="n", margin=0)
 {
 	basename = basename.split("["+splitvar+"]", 2);
 	var objObj = Engine.GetGUIObjectByName(basename.join("[0]"));
@@ -37,14 +37,16 @@ function horizSpaceRepeatedObjects (basename, splitvar="n", margin=0)
  * @param limit The number of elements to fit
  * @return The number of elements affected
  */
-function horizFitRepeatedObjects (basename, splitvar="n", margin=0, limit=0)
+function horizFitRepeatedObjects(basename, splitvar="n", margin=0, limit=0)
 {
 	basename = basename.split("["+splitvar+"]", 2);
 
 	var objObj;
 	if (limit == 0)
 		do
+		{
 			objObj = Engine.GetGUIObjectByName(basename.join("["+ ++limit +"]"));
+		}
 		while (objObj !== undefined)
 
 	for (let c = 0; c < limit; ++c)
@@ -67,7 +69,7 @@ function horizFitRepeatedObjects (basename, splitvar="n", margin=0, limit=0)
  * @param margin The gap, in px, between the repeated objects
  * @return The number of elements affected
  */
-function vertiSpaceRepeatedObjects (basename, splitvar="n", margin=0)
+function vertiSpaceRepeatedObjects(basename, splitvar="n", margin=0)
 {
 	basename = basename.split("["+splitvar+"]", 2);
 	var objObj = Engine.GetGUIObjectByName(basename.join("[0]"));

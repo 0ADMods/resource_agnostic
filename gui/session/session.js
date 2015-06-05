@@ -247,7 +247,7 @@ function updateTopPanel()
 	var resCodes = GetSimState().resources;
 	for (var r = 0; r < resCodes.length; ++r)
 	{
-		Engine.GetGUIObjectByName("resource["+r+"]").tooltip = translate(capitalizeWord(resCodes[r]));
+		Engine.GetGUIObjectByName("resource["+r+"]").tooltip = translateWithContext("firstWord", resCodes[r]);
 		Engine.GetGUIObjectByName("resource["+r+"]_icon").sprite = "stretched:session/icons/resources/" + resCodes[r] + ".png";
 	}
 	horizFitRepeatedObjects ("resource[n]", "n", 0, r);

@@ -140,7 +140,7 @@ g_SelectionPanels.Barter = {
 	},
 	"setTooltip": function(data)
 	{
-		var resource = translateWithContext("withinSentence", capitalizeWord(data.item));
+		var resource = translateWithContext("withinSentence", data.item);
 		data.button.Buy.tooltip = sprintf(translate("Buy %(resource)s"), {"resource": resource});
 		data.button.Sell.tooltip = sprintf(translate("Sell %(resource)s"), {"resource": resource});
 	},

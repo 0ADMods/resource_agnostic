@@ -217,7 +217,7 @@ function getAttackTooltip(template)
  */
 function getCostComponentDisplayName(costComponentName)
 {
-	return "[icon=\"icon"+capitalizeWord(costComponentName)+"\"]";
+	return "[icon=\"icon_"+costComponentName+"\"]";
 }
 
 /**

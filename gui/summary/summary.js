@@ -190,13 +190,13 @@ function init(data)
 	for (let code of g_GameData.resources)
 	{
 		resHeads.push({
-				"caption": translate(capitalizeWord(code)),
+				"caption": translateWithContext("firstWord", code),
 				"yStart": 34, "width": 100
 			});
 		resPanel.counters.unshift({"width": 100, "fn": calculateResources});
 		
 		tradeHeads.push({
-				"caption": translate(capitalizeWord(code)+" exchanged"),
+				"caption": translate(code+" exchanged"),
 				"yStart": 16, "width": 100,
 			});
 		tradePanel.counters.unshift({"width": 100, "fn": calculateResourceExchanged});
