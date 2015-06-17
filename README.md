@@ -26,15 +26,18 @@ having to modify the simulation or GUI code.
 
 #### Scripting Notes
 To add an new resource:
+
 1. Copy one of the currently existing resources in
    `simulation/data/resources` and amend as needed.
-2. Provide two icons, in the form of {res}.png and {res}_small.png, and
+2. Provide two icons, in the form of `{res}.png` and `{res}_small.png`, and
    place them in `art/textures/ui/session/icons/resources`
 3. Amend `gui/common/setup_resources.xml` so that you can use
    `[icon={res}]` in game UI texts.
+
 And your new resource is now usable for tribute, loot or barter.
 
 To permit gathering this new resource:
+
 1. You'll need to supply two cursors, in the form `action-gather-{res}`
    and `action-return-{res}`, and place them in `art/textures/cursors`.
    They get included automagically.
@@ -50,12 +53,13 @@ To permit gathering this new resource:
    that unit, every promotion level.
 
 To remove a resource:
+
 1. Add `.DELETED` to the end of the resource's JSON file. That's it.
 
 Please note that the GUI only has space for eight resources maximum. Any
 more will cause errors.
 
-To use this mod as a dependancy of your mod, add "ResourceAgnostic>=0.1"
+To use this mod as a dependancy of your mod, add `"ResourceAgnostic>=0.1"`
 to the `dependencies` attribute of your mod's `mod.json`.
 
 #### Known Issues
