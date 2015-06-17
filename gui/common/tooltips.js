@@ -248,7 +248,8 @@ function getEntityCostComponentsTooltipString(template, trainNum, entity)
 		if (c === "populationBonus")
 			continue;
 		else if (totalCosts[c])
-			costs.push(sprintf(translate("%(component)s %(cost)s"), { component: getCostComponentDisplayName(c), cost: totalCosts[c] }));
+			if (GetSimState().resources.indexOf(c) > -1 || c === "time")
+				costs.push(sprintf(translate("%(component)s %(cost)s"), { component: getCostComponentDisplayName(c), cost: totalCosts[c] }));
 
 	return costs;
 }

@@ -29,6 +29,13 @@ ResourceSupply.prototype.Init = function()
 	// Current resource amount (non-negative)
 	this.amount = this.GetMaxAmount();
 
+	// Remove entity if the resource supplied is not valid. An error message is provided by this.GetType()
+	if (!this.GetType().generic)
+	{
+		Engine.DestroyEntity(this.entity);
+		return;
+	}
+
 	this.gatherers = [];	// list of IDs for each players
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);	// system component so that's safe.
 	var numPlayers = cmpPlayerManager.GetNumPlayers();

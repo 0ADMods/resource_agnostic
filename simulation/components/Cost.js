@@ -59,14 +59,18 @@ Cost.prototype.GetResourceCosts = function()
 {
 	var costs = {};
 	var resCodes = Resources.GetCodes();
-	
+
 	for (var r in this.template.Resources)
 	{
+		let cost = +this.template.Resources[r];
 		if (resCodes.indexOf(r.toLowerCase()) < 0)
+		{
+			if (cost > 0)
+				warn("'"+r+"' has been specified as a required resource, but is not a valid resource.");
 			continue;
-		
-		costs[r] = +this.template.Resources[r];
-		costs[r] = ApplyValueModificationsToEntity("Cost/Resources/"+r, costs[r], this.entity);
+		}
+
+		costs[r] = ApplyValueModificationsToEntity("Cost/Resources/"+r, cost, this.entity);
 	}
 	return costs;
 };

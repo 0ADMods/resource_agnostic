@@ -237,6 +237,7 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 	// TODO: there should be a way for the GUI to determine whether it's going
 	// to be possible to add a batch (based on resource costs and length limits)
 	var cmpPlayer = QueryOwnerInterface(this.entity);
+	var resCodes = Resources.GetCodes();
 
 	if (this.queue.length < MAX_QUEUE_SIZE)
 	{
@@ -271,7 +272,14 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 
 			for (var r in template.Cost.Resources)
 			{
-				costs[r] = ApplyValueModificationsToTemplate("Cost/Resources/"+r, +template.Cost.Resources[r], cmpPlayer.GetPlayerID(), template);
+				let cost = +template.Cost.Resources[r];
+				if (resCodes.indexOf(r) < 0)
+				{
+					if (cost > 0)
+						warn("'"+r+"' has been specified as a required resource, but is not a valid resource.");
+					continue;
+				}
+				costs[r] = ApplyValueModificationsToTemplate("Cost/Resources/"+r, cost, cmpPlayer.GetPlayerID(), template);
 				totalCosts[r] = Math.floor(count * costs[r]);
 			}
 
@@ -317,9 +325,17 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 			var time = template.researchTime * cmpPlayer.GetCheatTimeMultiplier();
 
 			var cost = {};
-			for (let r of Resources.GetCodes())
-				if (template.cost[r])
-					cost[r] = Math.floor(template.cost[r]);
+			for (let r in template.cost)
+			{
+				let c = Math.floor(template.cost[r]);
+				if (resCodes.indexOf(r) < 0)
+				{
+					if (c > 0)
+						warn("'"+r+"' has been specified as a required resource, but is not a valid resource.");
+					continue;
+				}
+				cost[r] = c;
+			}
 			
 			// TrySubtractResources should report error to player (they ran out of resources)
 			if (!cmpPlayer.TrySubtractResources(cost))
@@ -337,7 +353,7 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 				"player": cmpPlayer.GetPlayerID(),
 				"count": 1,
 				"technologyTemplate": templateName,
-				"resources": deepcopy(template.cost), // need to copy to avoid serialization problems
+				"resources": cost,
 				"productionStarted": false,
 				"timeTotal": time*1000,
 				"timeRemaining": time*1000,

@@ -268,7 +268,8 @@ Player.prototype.SubtractResourcesOrNotify = function(amounts)
 
 	// Subtract the resources
 	for (var type in amounts)
-		this.resourceCount[type] -= amounts[type];
+		if (this.resourceCount[type])
+			this.resourceCount[type] -= amounts[type];
 
 	return true;
 };
