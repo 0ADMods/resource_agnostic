@@ -1,9 +1,8 @@
 
 Resource Agnostic Components and UI
-
-
-Description
 ------------------------------------------------------------------------
+
+#### Description
 The aim of this mod is to make all JS Simulation Components and game UI
 resource agnostic - that is to say, that they do not have the game's
 resources hard-coded into them.
@@ -11,8 +10,7 @@ resources hard-coded into them.
 This is so that modders can add/remove resources easily and without
 having to modify the simulation or GUI code.
 
-Installation
-------------------------------------------------------------------------
+#### Installation
 1. Acquire zip from GitHub (button marked "Download ZIP")
 2. Move to your mods folder, default locations are:
    - Linux   : ~/.local/share/0ad/mods
@@ -26,8 +24,7 @@ Installation
 8. Press buttons captioned with "Enable", "Save Configuration", and then
    "Start Mods" in that order
 
-Scripting Notes
-------------------------------------------------------------------------
+#### Scripting Notes
 To add an new resource:
 1. Copy one of the currently existing resources in
    `simulation/data/resources` and amend as needed.
@@ -61,8 +58,7 @@ more will cause errors.
 To use this mod as a dependancy of your mod, add "ResourceAgnostic>=0.1"
 to the `dependencies` attribute of your mod's `mod.json`.
 
-Known Issues
-------------------------------------------------------------------------
+#### Known Issues
 * You have to modify `gui/common/setup_resources.xml` in a not-very-mod-
   friendly fashion.
 * You have to modify `art/actor` and `simulation/template` xml files in
@@ -70,14 +66,12 @@ Known Issues
 * The text on resources in the barter/market UI is partly obscured when
   prices reach four digits.
 
-Credits
-------------------------------------------------------------------------
+#### Credits
 Thanks go to the main development team at Wildfire Games, the
 independent teams working on modifying and expanding the game, not to
 mention all the volunteers and members of the further community.
 
-License
-------------------------------------------------------------------------
+#### License
 The XML files within this work are based on work and examples by
 Wildfire Games, and are available under the Creative Commons Attribution
 ShareAlike 3.0 license. Details may be found at
