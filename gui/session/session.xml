@@ -22,6 +22,10 @@
 		onSimulationUpdate();
 	</action>
 
+	<action on="ReplayFinished">
+		onReplayFinished();
+	</action>
+
 	<action on="Press">
 		this.hidden = !this.hidden;
 	</action>
@@ -47,7 +51,7 @@
 	/>
 
 	<!-- Dev/cheat commands -->
-	<object name="devCommands" size="100%-225 50%-88 100%-8 50%+104" type="image" sprite="devCommandsBackground" z="40"
+	<object name="devCommands" size="100%-225 50%-88 100%-8 50%+120" type="image" sprite="devCommandsBackground" z="40"
 		hidden="true" hotkey="session.devcommands.toggle">
 		<action on="Press">toggleDeveloperOverlay();</action>
 
@@ -141,6 +145,13 @@
 		<object size="100%-16 176 100% 192" type="button" style="ModernTickBox">
 			<action on="Press">Engine.PostNetworkCommand({"type": "promote", "entities": g_Selection.toList()});</action>
 		</object>
+
+		<object size="0 192 100%-18 208" type="text" style="devCommandsText">
+			<translatableAttribute id="caption">Hierarchical pathfinder overlay</translatableAttribute>
+		</object>
+	    <object size="100%-16 192 100% 208" type="checkbox" style="ModernTickBox">
+			<action on="Press">Engine.GuiInterfaceCall("SetPathfinderHierDebugOverlay", this.checked);</action>
+	    </object>
 	</object>
 
 	<!-- ================================  ================================ -->
@@ -148,16 +159,13 @@
 	<!-- ================================  ================================ -->
 
 	<object size="100%-250 45 100%-140 65" type="text" name="timeElapsedCounter" style="SettingsText" hotkey="timeelapsedcounter.toggle" hidden="true">
-			<action on="Tick">
-				this.hidden = Engine.ConfigDB_GetValue("user", "gui.session.timeelapsedcounter") !== "true";
-			</action>
 			<action on="Press">
-				Engine.ConfigDB_CreateValue("user", "gui.session.timeelapsedcounter", ""+this.hidden);
+				Engine.ConfigDB_CreateValue("user", "gui.session.timeelapsedcounter", ""+(Engine.ConfigDB_GetValue("user", "gui.session.timeelapsedcounter") !== "true"));
 			</action>
 	</object>
 	<object size="100%-250 80 100%-140 100" type="text" name="ceasefireCounter" style="SettingsText" hotkey="ceasefirecounter.toggle" hidden="true">
 			<action on="Press">
-				Engine.ConfigDB_CreateValue("user", "gui.session.ceasefirecounter", ""+this.hidden);
+				Engine.ConfigDB_CreateValue("user", "gui.session.ceasefirecounter", ""+(Engine.ConfigDB_GetValue("user", "gui.session.ceasefirecounter") !== "true"));
 			</action>
 	</object>
 

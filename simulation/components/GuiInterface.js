@@ -136,7 +136,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 	if (cmpCeasefireManager)
 	{
 		ret.ceasefireActive = cmpCeasefireManager.IsCeasefireActive();
-		ret.ceasefireTimeRemaining = cmpCeasefireManager.GetCeasefireStartedTime() + cmpCeasefireManager.GetCeasefireTime() - ret.timeElapsed;
+		ret.ceasefireTimeRemaining = ret.ceasefireActive ? cmpCeasefireManager.GetCeasefireStartedTime() + cmpCeasefireManager.GetCeasefireTime() - ret.timeElapsed : 0;
 	}
 	
 	// Add the game type
@@ -1663,15 +1663,11 @@ GuiInterface.prototype.FindIdleUnits = function(player, data)
 
 	var idleUnits = [];
 
-	for (var j = 0; j < playerEntities.length; ++j)
+	for (let ent of playerEntities)
 	{
-		var ent = playerEntities[j];
-
 		if (ent <= data.prevUnit|0 || data.excludeUnits.indexOf(ent) > -1)
 			continue;
 		idleUnits.push(ent);
-		playerEntities.splice(j--, 1);
-
 		if (data.limit && idleUnits.length >= data.limit)
 			break;
 	}
@@ -1777,6 +1773,12 @@ GuiInterface.prototype.IsMapRevealed = function(player)
 {
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	return cmpRangeManager.GetLosRevealAll(player);
+};
+
+GuiInterface.prototype.SetPathfinderHierDebugOverlay = function(player, enabled)
+{
+	var cmpPathfinder = Engine.QueryInterface(SYSTEM_ENTITY, IID_Pathfinder);
+	cmpPathfinder.SetHierDebugOverlay(enabled);
 };
 
 GuiInterface.prototype.SetPathfinderDebugOverlay = function(player, enabled)
@@ -1907,6 +1909,7 @@ var exposedFunctions = {
 
 	"IsMapRevealed": 1,
 	"SetPathfinderDebugOverlay": 1,
+	"SetPathfinderHierDebugOverlay": 1,
 	"SetObstructionDebugOverlay": 1,
 	"SetMotionDebugOverlay": 1,
 	"SetRangeDebugOverlay": 1,

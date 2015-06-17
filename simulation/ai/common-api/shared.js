@@ -120,7 +120,7 @@ m.SharedScript.prototype.GetTemplate = function(name)
 };
 
 // Initialize the shared component.
-// We need to now the initial state of the game for this, as we will use it.
+// We need to know the initial state of the game for this, as we will use it.
 // This is called right at the end of the map generation.
 m.SharedScript.prototype.init = function(state, deserialization)
 {
@@ -192,7 +192,7 @@ m.SharedScript.prototype.init = function(state, deserialization)
 	for (var i in this._players)
 	{
 		this.gameState[this._players[i]] = new m.GameState();
-		this.gameState[this._players[i]].init(this,state,this._players[i]);
+		this.gameState[this._players[i]].init(this,state, this._players[i]);
 	}
 };
 
@@ -242,14 +242,8 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 	
 	// by order of updating:
 	// we "Destroy" last because we want to be able to switch Metadata first.
-	var CreateEvents = state.events["Create"];
-	var DestroyEvents = state.events["Destroy"];
-	var RenamingEvents = state.events["EntityRenamed"];
-	var TrainingEvents = state.events["TrainingFinished"];
-	var ConstructionEvents = state.events["ConstructionFinished"];
-	var MetadataEvents = state.events["AIMetadata"];
-	var ownershipChangeEvents = state.events["OwnershipChanged"];
 
+	var CreateEvents = state.events["Create"];
 	for (let i = 0; i < CreateEvents.length; ++i)
 	{
 		let evt = CreateEvents[i];
@@ -265,7 +259,7 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 			entCol.updateEnt(entity);
 	}
 
-	for (let evt of RenamingEvents)
+	for (let evt of state.events["EntityRenamed"])
 	{	// Switch the metadata: TODO entityCollections are updated only because of the owner change. Should be done properly
 		for (let p in this._players)
 		{
@@ -274,14 +268,14 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 		}
 	}
 
-	for (let evt of TrainingEvents)
+	for (let evt of state.events["TrainingFinished"])
 	{	// Apply metadata stored in training queues
 		for (let entId of evt.entities)
 			for (let key in evt.metadata)
 				this.setMetadata(evt.owner, this._entities.get(entId), key, evt.metadata[key])
 	}
 
-	for (let evt of ConstructionEvents)
+	for (let evt of state.events["ConstructionFinished"])
 	{	// we'll move metadata.
 		if (!this._entities.has(evt.entity))
 			continue;
@@ -293,7 +287,7 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 		foundationFinished[evt.entity] = true;
 	}
 
-	for (let evt of MetadataEvents)
+	for (let evt of state.events["AIMetadata"])
 	{
 		if (!this._entities.has(evt.id))
 			continue;	// might happen in some rare cases of foundations getting destroyed, perhaps.
@@ -302,6 +296,7 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 			this.setMetadata(evt.owner, this._entities.get(evt.id), key, evt.metadata[key])
 	}
 	
+	var DestroyEvents = state.events["Destroy"];
 	for (var i = 0; i < DestroyEvents.length; ++i)
 	{
 		var evt = DestroyEvents[i];
